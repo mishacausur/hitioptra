@@ -11,6 +11,8 @@ class SignInViewController: UIViewController {
 
     var coordinator: AppCoordinator?
     
+    var viewModel: SignInViewOutput
+    
     private let backButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +78,6 @@ class SignInViewController: UIViewController {
         field.textAlignment = .center
         field.addTarget(self, action: #selector(checkNumber), for: .allEvents)
         field.layer.masksToBounds = true
-        field.clearButtonMode = .unlessEditing
         field.attributedPlaceholder = NSAttributedString(string: "Номер телефона", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         field.textColor = UIColor(named: "DarkViolet")
         return field
@@ -119,6 +120,15 @@ class SignInViewController: UIViewController {
         return label
     }()
     
+    init(viewModel: SignInViewOutput) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "BackgroundViolet")
@@ -160,8 +170,14 @@ class SignInViewController: UIViewController {
     
     @objc private func confirmation() {
         guard let text = phoneField.text else { return }
-        coordinator?.confirmation(phoneNumber: text)
+        viewModel.auth(phone: text) { value in
+            guard value else {
+                return
+            }
+            self.coordinator?.confirmation(phoneNumber: text)
+        }
     }
+    
     private func configureViews() {
         view.addSubviews(backButton, signInLabel, phoneLabel, infoLabel, phoneFieldView, nextButton, agreedLabel, errorLabel)
         phoneFieldView.addSubviews(firstNumberLabel, phoneField)
@@ -217,5 +233,9 @@ extension SignInViewController: UITextFieldDelegate {
         return range.location < 14
     }
     
+    
+}
+
+extension SignInViewController: SignInViewInput {
     
 }

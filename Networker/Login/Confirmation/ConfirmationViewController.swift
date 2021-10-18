@@ -11,6 +11,8 @@ class ConfirmationViewController: UIViewController {
     
     var coordinator: AppCoordinator?
     
+    var viewModel: ConfirmationViewOutput
+    
     var phoneNumber: String
     
     private let backButton: UIButton = {
@@ -72,14 +74,14 @@ class ConfirmationViewController: UIViewController {
         field.layer.masksToBounds = true
         field.layer.borderColor = UIColor(named: "DarkViolet")?.cgColor
         field.layer.borderWidth = 1
-        field.attributedPlaceholder = NSAttributedString(string: "_ _ _ _", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        field.attributedPlaceholder = NSAttributedString(string: "_ _ _ _ _ _", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         field.textColor = UIColor(named: "DarkViolet")
         return field
     }()
     
     private let signInButton: UIButton = {
         let button = UIButton()
-//        button.addTarget(self, action: #selector(signIn), for: .touchUpInside)
+        button.addTarget(self, action: #selector(confirmation), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .bordered()
         var attributedString = AttributedString.init(stringLiteral: "Зарегистрироваться")
@@ -107,8 +109,9 @@ class ConfirmationViewController: UIViewController {
         configureViews()
     }
     
-    init(phoneNumber: String) {
+    init(phoneNumber: String, viewModel: ConfirmationViewOutput) {
         self.phoneNumber = phoneNumber
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -118,7 +121,7 @@ class ConfirmationViewController: UIViewController {
     
     @objc private func checkCode() {
         guard let text = codeField.text else { return }
-        codeField.text = text.applyPatternOnNumbers(pattern: "# # # #", replacementCharacter: "#")
+        codeField.text = text.applyPatternOnNumbers(pattern: "######", replacementCharacter: "#")
         
         if text.count == 6 {
             signInButton.isEnabled = true
@@ -129,6 +132,19 @@ class ConfirmationViewController: UIViewController {
         }
     }
     
+    @objc private func confirmation() {
+        guard let text = codeField.text else { return }
+        viewModel.verify(code: text) { value in
+            guard value else {
+                print(text)
+                print("Not success")
+                return
+            }
+            print("SUCCESS")
+        }
+    }
+    
+ 
     @objc private func backButtonTapped() {
         coordinator?.dismiss()
     }
@@ -173,7 +189,11 @@ class ConfirmationViewController: UIViewController {
 extension ConfirmationViewController: UITextFieldDelegate {
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return range.location < 7
+        return range.location < 6
     }
+    
+}
+
+extension ConfirmationViewController: ConfirmationViewInput {
     
 }

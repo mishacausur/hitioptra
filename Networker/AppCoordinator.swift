@@ -13,7 +13,8 @@ protocol Coordinator {
     var viewControllers: [Coordinator] { get set }
     var navigationViewController: UINavigationController? { get set }
     
-    func start()
+    func startWithAuth()
+    func startCurrentUserLoggedIn()
 }
 
 class AppCoordinator: Coordinator {
@@ -25,20 +26,33 @@ class AppCoordinator: Coordinator {
     init(navigationViewController: UINavigationController) {
         self.navigationViewController = navigationViewController
     }
-    func start() {
+    func startWithAuth() {
         let vc = LoginViewController()
         vc.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
     }
     
+    func startCurrentUserLoggedIn() {
+        guard let navVC = navigationViewController else { fatalError() }
+        let tabBarVC = TabBarViewController(navController: navVC)
+        tabBarVC.coordinator = self
+        navigationViewController?.pushViewController(tabBarVC, animated: true)
+    }
+    
     func signIn() {
-        let vc = SignInViewController()
+        let viewModel = SignInViewModel()
+        let vc = SignInViewController(viewModel: viewModel)
+        viewModel.viewInput = vc
+        viewModel.coordinator = self
         vc.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
     }
     
     func confirmation(phoneNumber: String) {
-        let vc = ConfirmationViewController(phoneNumber: phoneNumber)
+        let viewModel = ConfirmationViewModel()
+        let vc = ConfirmationViewController(phoneNumber: phoneNumber, viewModel: viewModel)
+        viewModel.viewInput = vc
+        viewModel.coordinator = self
         vc.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
     }
