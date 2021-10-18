@@ -135,7 +135,8 @@ class ConfirmationViewController: UIViewController {
     
     private func configureViews() {
         view.addSubviews(backButton, confirmationLabel, infoLabel, phoneNumberLabel, codeLabel, codeField, signInButton, heartLogo)
-        phoneNumberLabel.text = phoneNumber
+        phoneNumberLabel.text = "+7 " + phoneNumber
+        
         let constraints = [
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 6),

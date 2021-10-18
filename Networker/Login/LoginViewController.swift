@@ -103,8 +103,7 @@ class LoginViewController: UIViewController {
             circleImageLeft.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -300)]
     
         NSLayoutConstraint.activate(constraints)
-        
-        print(UIScreen.main.bounds)
+       
     }
 
 }
