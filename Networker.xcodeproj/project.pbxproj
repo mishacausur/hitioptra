@@ -10,6 +10,10 @@
 		B62E6558271B2E30008F62AE /* VenrynSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B62E6550271B297E008F62AE /* VenrynSans-Regular.ttf */; };
 		B62E6559271B2E32008F62AE /* VenrynSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B62E6552271B29F5008F62AE /* VenrynSans-Light.ttf */; };
 		B62E655A271B2E34008F62AE /* VenrynSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B62E6554271B2A3C008F62AE /* VenrynSans-SemiBold.ttf */; };
+		B62E655E271B30A2008F62AE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62E655D271B30A2008F62AE /* MainViewController.swift */; };
+		B62E6561271B3F79008F62AE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62E6560271B3F79008F62AE /* Extensions.swift */; };
+		B6ABB8D4271B58E400C75B6A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ABB8D3271B58E400C75B6A /* SignInViewController.swift */; };
+		B6ABB8D6271C5DF900C75B6A /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ABB8D5271C5DF900C75B6A /* ConfirmationViewController.swift */; };
 		B6CDFE69271B174C001AFBB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */; };
 		B6CDFE6B271B174C001AFBB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */; };
 		B6CDFE6D271B174C001AFBB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDFE6C271B174C001AFBB2 /* LoginViewController.swift */; };
@@ -22,6 +26,10 @@
 		B62E6550271B297E008F62AE /* VenrynSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VenrynSans-Regular.ttf"; sourceTree = "<group>"; };
 		B62E6552271B29F5008F62AE /* VenrynSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VenrynSans-Light.ttf"; sourceTree = "<group>"; };
 		B62E6554271B2A3C008F62AE /* VenrynSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VenrynSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		B62E655D271B30A2008F62AE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B62E6560271B3F79008F62AE /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B6ABB8D3271B58E400C75B6A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		B6ABB8D5271C5DF900C75B6A /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		B6CDFE65271B174C001AFBB2 /* Networker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +61,16 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		B62E655F271B30A6008F62AE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B6CDFE6C271B174C001AFBB2 /* LoginViewController.swift */,
+				B6ABB8D3271B58E400C75B6A /* SignInViewController.swift */,
+				B6ABB8D5271C5DF900C75B6A /* ConfirmationViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		B6CDFE5C271B174C001AFBB2 = {
 			isa = PBXGroup;
 			children = (
@@ -73,11 +91,13 @@
 			isa = PBXGroup;
 			children = (
 				B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */,
+				B62E6560271B3F79008F62AE /* Extensions.swift */,
+				B62E655F271B30A6008F62AE /* Login */,
 				B6CDFE7C271B1900001AFBB2 /* AppCoordinator.swift */,
 				B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */,
-				B6CDFE6C271B174C001AFBB2 /* LoginViewController.swift */,
 				B6CDFE71271B174D001AFBB2 /* Assets.xcassets */,
 				B6CDFE73271B174D001AFBB2 /* LaunchScreen.storyboard */,
+				B62E655D271B30A2008F62AE /* MainViewController.swift */,
 				B6CDFE76271B174D001AFBB2 /* Info.plist */,
 				B62E6557271B2D9C008F62AE /* Fonts */,
 			);
@@ -157,10 +177,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6ABB8D4271B58E400C75B6A /* SignInViewController.swift in Sources */,
 				B6CDFE7D271B1900001AFBB2 /* AppCoordinator.swift in Sources */,
+				B62E6561271B3F79008F62AE /* Extensions.swift in Sources */,
 				B6CDFE6D271B174C001AFBB2 /* LoginViewController.swift in Sources */,
 				B6CDFE69271B174C001AFBB2 /* AppDelegate.swift in Sources */,
 				B6CDFE6B271B174C001AFBB2 /* SceneDelegate.swift in Sources */,
+				B6ABB8D6271C5DF900C75B6A /* ConfirmationViewController.swift in Sources */,
+				B62E655E271B30A2008F62AE /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +329,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Networker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -331,6 +357,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Networker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

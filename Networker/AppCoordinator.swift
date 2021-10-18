@@ -26,7 +26,24 @@ class AppCoordinator: Coordinator {
         self.navigationViewController = navigationViewController
     }
     func start() {
-       let vc = LoginViewController()
+        let vc = LoginViewController()
+        vc.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
+    }
+    
+    func signIn() {
+        let vc = SignInViewController()
+        vc.coordinator = self
+        navigationViewController?.pushViewController(vc, animated: true)
+    }
+    
+    func confirmation(phoneNumber: String) {
+        let vc = ConfirmationViewController(phoneNumber: phoneNumber)
+        vc.coordinator = self
+        navigationViewController?.pushViewController(vc, animated: true)
+    }
+    
+    func dismiss() {
+        navigationViewController?.popViewController(animated: true)
     }
 }
