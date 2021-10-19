@@ -24,6 +24,9 @@
 		B63456D1271DC4CA00C15085 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63456D0271DC4CA00C15085 /* FavoriteViewController.swift */; };
 		B63456D3271DC4D600C15085 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63456D2271DC4D600C15085 /* FavoriteViewModel.swift */; };
 		B63456D5271DC56000C15085 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63456D4271DC56000C15085 /* TabBarViewController.swift */; };
+		B638002B271F0CAE0082AF30 /* 68367-newspaper-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = B638002A271F0CAE0082AF30 /* 68367-newspaper-loading.json */; };
+		B638002D271F0F070082AF30 /* 65696-tick-animation-success-feedback.json in Resources */ = {isa = PBXBuildFile; fileRef = B638002C271F0F070082AF30 /* 65696-tick-animation-success-feedback.json */; };
+		B638002F271F13300082AF30 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B638002E271F13300082AF30 /* StartViewController.swift */; };
 		B6ABB8D4271B58E400C75B6A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ABB8D3271B58E400C75B6A /* SignInViewController.swift */; };
 		B6ABB8D6271C5DF900C75B6A /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ABB8D5271C5DF900C75B6A /* ConfirmationViewController.swift */; };
 		B6CDFE69271B174C001AFBB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */; };
@@ -51,6 +54,9 @@
 		B63456D0271DC4CA00C15085 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		B63456D2271DC4D600C15085 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		B63456D4271DC56000C15085 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		B638002A271F0CAE0082AF30 /* 68367-newspaper-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "68367-newspaper-loading.json"; sourceTree = "<group>"; };
+		B638002C271F0F070082AF30 /* 65696-tick-animation-success-feedback.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "65696-tick-animation-success-feedback.json"; sourceTree = "<group>"; };
+		B638002E271F13300082AF30 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		B6ABB8D3271B58E400C75B6A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B6ABB8D5271C5DF900C75B6A /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		B6CDFE65271B174C001AFBB2 /* Networker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				B6CDFE6C271B174C001AFBB2 /* LoginViewController.swift */,
+				B638002E271F13300082AF30 /* StartViewController.swift */,
 				B63456C0271DB83C00C15085 /* SignIn */,
 				B63456C1271DB85300C15085 /* Confirmation */,
 			);
@@ -179,6 +186,15 @@
 			path = Favorite;
 			sourceTree = "<group>";
 		};
+		B6380029271F0C9B0082AF30 /* AnimationFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B638002A271F0CAE0082AF30 /* 68367-newspaper-loading.json */,
+				B638002C271F0F070082AF30 /* 65696-tick-animation-success-feedback.json */,
+			);
+			path = AnimationFiles;
+			sourceTree = "<group>";
+		};
 		B6CDFE5C271B174C001AFBB2 = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +216,7 @@
 		B6CDFE67271B174C001AFBB2 /* Networker */ = {
 			isa = PBXGroup;
 			children = (
+				B6380029271F0C9B0082AF30 /* AnimationFiles */,
 				B63456BD271DAECE00C15085 /* Managers */,
 				B62E655F271B30A6008F62AE /* Login */,
 				B63456C4271DC42A00C15085 /* MainViewControllers */,
@@ -280,9 +297,11 @@
 				B62E6559271B2E32008F62AE /* VenrynSans-Light.ttf in Resources */,
 				B63456BA271D9E8F00C15085 /* GoogleService-Info.plist in Resources */,
 				B62E655A271B2E34008F62AE /* VenrynSans-SemiBold.ttf in Resources */,
+				B638002B271F0CAE0082AF30 /* 68367-newspaper-loading.json in Resources */,
 				B6CDFE75271B174D001AFBB2 /* LaunchScreen.storyboard in Resources */,
 				B62E6558271B2E30008F62AE /* VenrynSans-Regular.ttf in Resources */,
 				B6CDFE72271B174D001AFBB2 /* Assets.xcassets in Resources */,
+				B638002D271F0F070082AF30 /* 65696-tick-animation-success-feedback.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +368,7 @@
 				B63456CE271DC4B600C15085 /* ProfileViewModel.swift in Sources */,
 				B6ABB8D6271C5DF900C75B6A /* ConfirmationViewController.swift in Sources */,
 				B62E655E271B30A2008F62AE /* MainViewController.swift in Sources */,
+				B638002F271F13300082AF30 /* StartViewController.swift in Sources */,
 				B63456D3271DC4D600C15085 /* FavoriteViewModel.swift in Sources */,
 				B63456C6271DC46200C15085 /* FeedViewController.swift in Sources */,
 				B63456BF271DAEDF00C15085 /* AuthManager.swift in Sources */,

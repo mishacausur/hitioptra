@@ -10,12 +10,13 @@ import UIKit
 
 class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
-    var coordinator: AppCoordinator?
+    var coordinator: AppCoordinator
     
     var navController: UINavigationController
     
-    init(navController: UINavigationController) {
+    init(navController: UINavigationController, coordinator: AppCoordinator) {
         self.navController = navController
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -25,11 +26,24 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBar.backgroundColor = .white
+        tabBar.unselectedItemTintColor = UIColor(named: "BackgroundViolet")
+        tabBar.alpha = 0.6
+        tabBar.layer.borderColor = UIColor(named: "DarkViolet")?.cgColor
+        tabBar.layer.borderWidth = 0.3
+        tabBar.tintColor = UIColor(named: "DarkViolet")
+        setControllers() 
+    }
+    
+    private func setControllers() {
+        
         let feedViewModel = FeedViewModel()
+        
         let feedVC = FeedViewController(viewModel: feedViewModel)
         feedViewModel.viewInput = feedVC
         let feedNavVC = configureViewControllers(viewController: feedVC, title: "Главная", imageName: "house.circle.fill")
         feedVC.coordinator = coordinator
+        feedViewModel.coordinator = coordinator
         
         let profileVC = ProfileViewController()
         let profileNavVC = configureViewControllers(viewController: profileVC, title: "Профиль", imageName: "person.circle.fill")
@@ -42,12 +56,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
         viewControllers = [feedNavVC, profileNavVC, favoriteNavVC]
         
-        tabBar.backgroundColor = .white
-        tabBar.unselectedItemTintColor = UIColor(named: "BackgroundViolet")
-        tabBar.alpha = 0.6
-        tabBar.layer.borderColor = UIColor(named: "DarkViolet")?.cgColor
-        tabBar.layer.borderWidth = 0.3
-        tabBar.tintColor = UIColor(named: "DarkViolet")
     }
     
     private func configureViewControllers(viewController: UIViewController, title: String, imageName: String)-> UINavigationController {

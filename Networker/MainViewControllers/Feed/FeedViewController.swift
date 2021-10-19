@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class FeedViewController: UIViewController {
 
@@ -26,23 +27,39 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "BackgroundViolet")
         title = "Новости"
+        configureViews()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "bell"))
+    }
+    
+    private let loginButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = .plain()
+        button.addTarget(self, action: #selector(signOut), for: .touchUpInside)
+        var attributedString = AttributedString.init(stringLiteral: "выйти")
+        attributedString.font = UIFont(name: "VenrynSans-Light", size: 18)
+        button.configuration?.attributedTitle = attributedString
+        button.configuration?.buttonSize = .large
+        button.configuration?.baseForegroundColor = UIColor(named: "DarkViolet")
+        return button
+    }()
+    
+    @objc private func signOut() {
+        viewModel.signOut()
     }
     
     @objc private func search() {
         
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configureViews() {
+        view.addSubviews(loginButton)
+        let constraints = [
+            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)]
+        
+        NSLayoutConstraint.activate(constraints)
     }
-    */
-
 }
 
 extension FeedViewController: FeedViewInput {

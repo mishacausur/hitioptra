@@ -61,6 +61,13 @@ class LoginViewController: UIViewController {
         return view
     }()
     
+    let backgroundImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "bg")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     @objc private func signIn(){
         coordinator?.signIn()
     }
@@ -72,6 +79,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor(named: "BackgroundViolet")
+        
         configureViews()
         circleImageLeft.rotateBack()
         super.viewDidLoad()
@@ -79,10 +87,15 @@ class LoginViewController: UIViewController {
     }
 
     private func configureViews() {
-        view.addSubviews(circleImageLeft, signInButton, heartLogo, loginButton, appLabel)
+        view.addSubviews(backgroundImage, circleImageLeft, signInButton, heartLogo, loginButton, appLabel)
  
         
         let constraints = [
+            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
             appLabel.bottomAnchor.constraint(equalTo: view.centerYAnchor),
             appLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             

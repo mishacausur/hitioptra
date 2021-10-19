@@ -34,10 +34,15 @@ class AppCoordinator: Coordinator {
     
     func startCurrentUserLoggedIn() {
         guard let navVC = navigationViewController else { fatalError() }
-        let tabBarVC = TabBarViewController(navController: navVC)
-        tabBarVC.coordinator = self
+        let tabBarVC = TabBarViewController(navController: navVC, coordinator: self)
         navigationViewController?.pushViewController(tabBarVC, animated: true)
     }
+    func startWithSuccess() {
+        let vc = StartViewController()
+        vc.coordinator = self
+        navigationViewController?.pushViewController(vc, animated: true)
+    }
+    
     
     func signIn() {
         let viewModel = SignInViewModel()
@@ -55,6 +60,10 @@ class AppCoordinator: Coordinator {
         viewModel.coordinator = self
         vc.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
+    }
+    
+    func signOut() {
+        navigationViewController?.popToRootViewController(animated: true)
     }
     
     func dismiss() {

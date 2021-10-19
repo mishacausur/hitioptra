@@ -84,7 +84,7 @@ class ConfirmationViewController: UIViewController {
         button.addTarget(self, action: #selector(confirmation), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .bordered()
-        var attributedString = AttributedString.init(stringLiteral: "Зарегистрироваться")
+        var attributedString = AttributedString.init(stringLiteral: "Подтвердить")
         attributedString.font = UIFont(name: "VenrynSans-Regular", size: 24)
         button.configuration?.attributedTitle = attributedString
         button.configuration?.buttonSize = .medium
@@ -100,6 +100,12 @@ class ConfirmationViewController: UIViewController {
         return view
     }()
     
+    let backgroundImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "bg3")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,24 +142,35 @@ class ConfirmationViewController: UIViewController {
         guard let text = codeField.text else { return }
         viewModel.verify(code: text) { value in
             guard value else {
-                print(text)
-                print("Not success")
+                self.invalidCode()
                 return
             }
-            print("SUCCESS")
+            self.coordinator?.startWithSuccess()
         }
     }
     
+    private func invalidCode() {
+        let alarmController = UIAlertController(title: "Неверный код", message: "Проверьте введеный код из СМС", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Отмена", style: .cancel)
+        alarmController.addAction(cancel)
+        
+        present(alarmController, animated: true)
+    }
  
     @objc private func backButtonTapped() {
         coordinator?.dismiss()
     }
     
     private func configureViews() {
-        view.addSubviews(backButton, confirmationLabel, infoLabel, phoneNumberLabel, codeLabel, codeField, signInButton, heartLogo)
+        view.addSubviews(backgroundImage, backButton, confirmationLabel, infoLabel, phoneNumberLabel, codeLabel, codeField, signInButton, heartLogo)
         phoneNumberLabel.text = "+7 " + phoneNumber
         
         let constraints = [
+            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 6),
            
@@ -179,10 +196,12 @@ class ConfirmationViewController: UIViewController {
             heartLogo.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 44),
             heartLogo.widthAnchor.constraint(equalToConstant: 74),
             heartLogo.heightAnchor.constraint(equalTo: heartLogo.widthAnchor),
-            heartLogo.centerXAnchor.constraint(equalTo: signInButton.centerXAnchor),]
+            heartLogo.centerXAnchor.constraint(equalTo: signInButton.centerXAnchor)]
         
         NSLayoutConstraint.activate(constraints)
     }
+    
+ 
 
 }
 

@@ -73,12 +73,12 @@ class SignInViewController: UIViewController {
     private let phoneField: UITextField = {
         let field = UITextField()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = UIFont(name: "VenrynSans-Light", size: 24)
+        field.font = UIFont(name: "VenrynSans-Regular", size: 24)
         field.keyboardType = .numberPad
         field.textAlignment = .center
         field.addTarget(self, action: #selector(checkNumber), for: .allEvents)
         field.layer.masksToBounds = true
-        field.attributedPlaceholder = NSAttributedString(string: "Номер телефона", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        field.attributedPlaceholder = NSAttributedString(string: "Номер телефона", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderColor")])
         field.textColor = UIColor(named: "DarkViolet")
         return field
     }()
@@ -118,6 +118,13 @@ class SignInViewController: UIViewController {
         label.alpha = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    let backgroundImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "bg2")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     init(viewModel: SignInViewOutput) {
@@ -179,9 +186,15 @@ class SignInViewController: UIViewController {
     }
     
     private func configureViews() {
-        view.addSubviews(backButton, signInLabel, phoneLabel, infoLabel, phoneFieldView, nextButton, agreedLabel, errorLabel)
+        view.addSubviews(backgroundImage, backButton, signInLabel, phoneLabel, infoLabel, phoneFieldView, nextButton, agreedLabel, errorLabel)
         phoneFieldView.addSubviews(firstNumberLabel, phoneField)
         let constraints = [
+            
+            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 6),
             

@@ -28,7 +28,6 @@ class ConfirmationViewModel: ConfirmationViewOutput {
        
         AuthManager.shared.verifyAuth(code: code) { value in
             guard value else {
-                print("CODE IS \(code)")
                 completion(false)
                 return
             }
