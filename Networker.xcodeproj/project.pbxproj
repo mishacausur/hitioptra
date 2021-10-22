@@ -27,6 +27,12 @@
 		B638002B271F0CAE0082AF30 /* 68367-newspaper-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = B638002A271F0CAE0082AF30 /* 68367-newspaper-loading.json */; };
 		B638002D271F0F070082AF30 /* 65696-tick-animation-success-feedback.json in Resources */ = {isa = PBXBuildFile; fileRef = B638002C271F0F070082AF30 /* 65696-tick-animation-success-feedback.json */; };
 		B638002F271F13300082AF30 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B638002E271F13300082AF30 /* StartViewController.swift */; };
+		B638003227207A760082AF30 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B638003127207A760082AF30 /* UserProfile.swift */; };
+		B638003427207AFC0082AF30 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B638003327207AFC0082AF30 /* PostModel.swift */; };
+		B638003727207CEA0082AF30 /* HistoryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B638003627207CEA0082AF30 /* HistoryCollectionView.swift */; };
+		B638003927207E130082AF30 /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B638003827207E130082AF30 /* HistoryCollectionViewCell.swift */; };
+		B638003D2722C1A80082AF30 /* FeedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B638003C2722C1A80082AF30 /* FeedTableView.swift */; };
+		B638003F2722C1B40082AF30 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B638003E2722C1B40082AF30 /* FeedTableViewCell.swift */; };
 		B6ABB8D4271B58E400C75B6A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ABB8D3271B58E400C75B6A /* SignInViewController.swift */; };
 		B6ABB8D6271C5DF900C75B6A /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ABB8D5271C5DF900C75B6A /* ConfirmationViewController.swift */; };
 		B6CDFE69271B174C001AFBB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */; };
@@ -57,6 +63,12 @@
 		B638002A271F0CAE0082AF30 /* 68367-newspaper-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "68367-newspaper-loading.json"; sourceTree = "<group>"; };
 		B638002C271F0F070082AF30 /* 65696-tick-animation-success-feedback.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "65696-tick-animation-success-feedback.json"; sourceTree = "<group>"; };
 		B638002E271F13300082AF30 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		B638003127207A760082AF30 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		B638003327207AFC0082AF30 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		B638003627207CEA0082AF30 /* HistoryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionView.swift; sourceTree = "<group>"; };
+		B638003827207E130082AF30 /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		B638003C2722C1A80082AF30 /* FeedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableView.swift; sourceTree = "<group>"; };
+		B638003E2722C1B40082AF30 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		B6ABB8D3271B58E400C75B6A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B6ABB8D5271C5DF900C75B6A /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		B6CDFE65271B174C001AFBB2 /* Networker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +163,7 @@
 		B63456C4271DC42A00C15085 /* MainViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B62E655D271B30A2008F62AE /* MainViewController.swift */,
 				B63456D4271DC56000C15085 /* TabBarViewController.swift */,
 				B63456C7271DC46500C15085 /* Feed */,
 				B63456CA271DC48500C15085 /* Profile */,
@@ -162,6 +175,8 @@
 		B63456C7271DC46500C15085 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				B638003A27208BFF0082AF30 /* FeedTableView */,
+				B638003527207CBB0082AF30 /* HistroriesCollection */,
 				B63456C5271DC46200C15085 /* FeedViewController.swift */,
 				B63456C8271DC48100C15085 /* FeedViewModel.swift */,
 			);
@@ -195,6 +210,46 @@
 			path = AnimationFiles;
 			sourceTree = "<group>";
 		};
+		B638003027207A580082AF30 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				B638003127207A760082AF30 /* UserProfile.swift */,
+				B638003327207AFC0082AF30 /* PostModel.swift */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
+		B638003527207CBB0082AF30 /* HistroriesCollection */ = {
+			isa = PBXGroup;
+			children = (
+				B638003627207CEA0082AF30 /* HistoryCollectionView.swift */,
+				B638003827207E130082AF30 /* HistoryCollectionViewCell.swift */,
+			);
+			path = HistroriesCollection;
+			sourceTree = "<group>";
+		};
+		B638003A27208BFF0082AF30 /* FeedTableView */ = {
+			isa = PBXGroup;
+			children = (
+				B638003C2722C1A80082AF30 /* FeedTableView.swift */,
+				B638003E2722C1B40082AF30 /* FeedTableViewCell.swift */,
+			);
+			path = FeedTableView;
+			sourceTree = "<group>";
+		};
+		B638003B2722C0E20082AF30 /* CommonFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B62E6557271B2D9C008F62AE /* Fonts */,
+				B6CDFE7C271B1900001AFBB2 /* AppCoordinator.swift */,
+				B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */,
+				B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */,
+				B6CDFE73271B174D001AFBB2 /* LaunchScreen.storyboard */,
+				B62E6560271B3F79008F62AE /* Extensions.swift */,
+			);
+			path = CommonFiles;
+			sourceTree = "<group>";
+		};
 		B6CDFE5C271B174C001AFBB2 = {
 			isa = PBXGroup;
 			children = (
@@ -216,20 +271,15 @@
 		B6CDFE67271B174C001AFBB2 /* Networker */ = {
 			isa = PBXGroup;
 			children = (
+				B638003B2722C0E20082AF30 /* CommonFiles */,
+				B638003027207A580082AF30 /* DataModels */,
 				B6380029271F0C9B0082AF30 /* AnimationFiles */,
 				B63456BD271DAECE00C15085 /* Managers */,
 				B62E655F271B30A6008F62AE /* Login */,
 				B63456C4271DC42A00C15085 /* MainViewControllers */,
-				B6CDFE7C271B1900001AFBB2 /* AppCoordinator.swift */,
-				B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */,
-				B62E6560271B3F79008F62AE /* Extensions.swift */,
-				B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */,
-				B6CDFE73271B174D001AFBB2 /* LaunchScreen.storyboard */,
-				B62E655D271B30A2008F62AE /* MainViewController.swift */,
 				B6CDFE71271B174D001AFBB2 /* Assets.xcassets */,
 				B6CDFE76271B174D001AFBB2 /* Info.plist */,
 				B63456B9271D9E8F00C15085 /* GoogleService-Info.plist */,
-				B62E6557271B2D9C008F62AE /* Fonts */,
 			);
 			path = Networker;
 			sourceTree = "<group>";
@@ -358,14 +408,20 @@
 				B63456C3271DB87200C15085 /* ConfirmationViewModel.swift in Sources */,
 				B6CDFE7D271B1900001AFBB2 /* AppCoordinator.swift in Sources */,
 				B62E6561271B3F79008F62AE /* Extensions.swift in Sources */,
+				B638003F2722C1B40082AF30 /* FeedTableViewCell.swift in Sources */,
 				B63456D5271DC56000C15085 /* TabBarViewController.swift in Sources */,
+				B638003227207A760082AF30 /* UserProfile.swift in Sources */,
 				B63456CC271DC4A500C15085 /* ProfileViewController.swift in Sources */,
 				B6CDFE6D271B174C001AFBB2 /* LoginViewController.swift in Sources */,
 				B63456D1271DC4CA00C15085 /* FavoriteViewController.swift in Sources */,
 				B6CDFE69271B174C001AFBB2 /* AppDelegate.swift in Sources */,
+				B638003427207AFC0082AF30 /* PostModel.swift in Sources */,
 				B63456BC271DAC9F00C15085 /* SignInViewModel.swift in Sources */,
 				B6CDFE6B271B174C001AFBB2 /* SceneDelegate.swift in Sources */,
+				B638003D2722C1A80082AF30 /* FeedTableView.swift in Sources */,
+				B638003727207CEA0082AF30 /* HistoryCollectionView.swift in Sources */,
 				B63456CE271DC4B600C15085 /* ProfileViewModel.swift in Sources */,
+				B638003927207E130082AF30 /* HistoryCollectionViewCell.swift in Sources */,
 				B6ABB8D6271C5DF900C75B6A /* ConfirmationViewController.swift in Sources */,
 				B62E655E271B30A2008F62AE /* MainViewController.swift in Sources */,
 				B638002F271F13300082AF30 /* StartViewController.swift in Sources */,

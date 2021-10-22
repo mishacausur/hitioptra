@@ -41,6 +41,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         let feedVC = FeedViewController(viewModel: feedViewModel)
         feedViewModel.viewInput = feedVC
+        feedViewModel.users = users.users
         let feedNavVC = configureViewControllers(viewController: feedVC, title: "Главная", imageName: "house.circle.fill")
         feedVC.coordinator = coordinator
         feedViewModel.coordinator = coordinator

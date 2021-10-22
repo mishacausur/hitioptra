@@ -52,6 +52,25 @@ class FeedViewController: UIViewController {
     @objc private func search() {
         
     }
+    
+    func configureHistoryView() {
+        guard  let users = viewModel.users else { return }
+        let historyCollection: HistoryCollectionView = {
+            let collection = HistoryCollectionView(frame: .zero, users: users)
+            collection.translatesAutoresizingMaskIntoConstraints = false
+            return collection
+        }()
+        
+        view.addSubview(historyCollection)
+        
+        let constraints = [
+            historyCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
+            historyCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            historyCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            historyCollection.heightAnchor.constraint(equalToConstant: 50)]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
     private func configureViews() {
         view.addSubviews(loginButton)
         let constraints = [
