@@ -63,8 +63,12 @@ extension HistoryCollectionView: UICollectionViewDelegateFlowLayout, UICollectio
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 60, height: 60)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top: .zero, left: 22, bottom: .zero, right: .zero)
+        return UIEdgeInsets(top: 22, left: 22, bottom: 16, right: .zero)
        
        }
     

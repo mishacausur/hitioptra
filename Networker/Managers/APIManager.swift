@@ -24,6 +24,21 @@ class APIManager {
         return datebase
     }
     
+    func getContent(name: [String], completion: @escaping ([Post])->() ) {
+        var posts: [Post] = []
+        name.forEach { value in
+            self.getPosts(postID: value, contentID: value) { post in
+                guard post != nil else {
+                    completion(posts)
+                    return }
+                posts.append(post!)
+                completion(posts)
+            }
+            
+        }
+        
+    }
+    
     func getPosts(postID: String, contentID: String, completion: @escaping (Post?)->() ) {
         let database = configureFirebase()
         database.collection("posts").document(postID).getDocument { document, error in
@@ -31,10 +46,27 @@ class APIManager {
                 completion(nil)
                 return
             }
+            self.getImageForPost(contentID: contentID) { image in
+                let post = Post(author: document?.get("author") as! String, type: document?.get("type") as! String, date: document?.get("date") as! Int, text: document?.get("text") as! String, image: image, likes: document?.get("likes") as! Int, comments: document?.get("comments") as! Int)
+                completion(post)
+            }
         }
     }
     
     func getImageForPost(contentID: String, completion: @escaping (UIImage?)->() ) {
         let storage = Storage.storage()
+        let reference = storage.reference()
+        let path = reference.child("pictures")
+        var image: UIImage = UIImage(named: "imageDownloadErrorMessage")!
+        let file = path.child(contentID + ".jpg")
+        file.getData(maxSize: 1024*1024) { data, error in
+            guard error == nil else {
+                completion(image)
+                return
+            }
+            guard let data = data, let dataImage = UIImage(data: data) else { return }
+            image = dataImage
+            completion(image)
+        }
     }
 }

@@ -92,7 +92,7 @@ class StartViewController: UIViewController {
             confirmationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -44),
         
             animationView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            animationView.widthAnchor.constraint(equalToConstant: 174),
+            animationView.widthAnchor.constraint(equalToConstant: 274),
             animationView.heightAnchor.constraint(equalTo: animationView.widthAnchor),
             animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         

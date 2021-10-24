@@ -10,7 +10,8 @@ import UIKit
 
 struct Post {
     let author: String
-    let date: Date
+    let type: String
+    let date: Int
     let text: String
     let image: UIImage?
     let likes: Int

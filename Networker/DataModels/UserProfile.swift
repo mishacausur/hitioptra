@@ -23,9 +23,11 @@ struct UserProfile {
 }
 
 let user = UserProfile(id: 1, userName: "JD", name: "DJD", surname: "KDKDK", image: UIImage(named: "ava")!, isOnline: true)
+let user2 = UserProfile(id: 1, userName: "JD", name: "DJD", surname: "KDKDK", image: UIImage(named: "person")!, isOnline: true)
+let user3 = UserProfile(id: 1, userName: "JD", name: "DJD", surname: "KDKDK", image: UIImage(named: "cosmo")!, isOnline: true)
 
 class users {
 
-    static let users: [UserProfile] = [user,user,user,user,user,user,user]
+    static let users: [UserProfile] = [user,user2,user3,user,user,user,user]
 
 }

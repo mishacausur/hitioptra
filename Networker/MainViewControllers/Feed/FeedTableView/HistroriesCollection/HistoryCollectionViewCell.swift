@@ -19,7 +19,7 @@ class HistoryCollectionViewCell: UICollectionViewCell {
     
     let userImage: UIImageView = {
         let image = UIImageView()
-        image.layer.cornerRadius = 10
+        image.layer.cornerRadius = 30
         image.layer.masksToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -43,7 +43,7 @@ class HistoryCollectionViewCell: UICollectionViewCell {
             userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             userImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             userImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            userImage.widthAnchor.constraint(equalToConstant: 100),
+            userImage.widthAnchor.constraint(equalToConstant: 60),
             userImage.heightAnchor.constraint(equalTo: userImage.widthAnchor)]
         
         NSLayoutConstraint.activate(constraints)

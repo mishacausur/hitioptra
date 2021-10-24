@@ -14,6 +14,8 @@ class FeedViewController: UIViewController {
     
     var viewModel: FeedViewOutput
     
+    let scrollView = UIScrollView(frame: .zero)
+    
     init(viewModel: FeedViewOutput) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -30,6 +32,7 @@ class FeedViewController: UIViewController {
         configureViews()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "bell"))
+        viewModel.getContent()
     }
     
     private let loginButton: UIButton = {
@@ -53,31 +56,49 @@ class FeedViewController: UIViewController {
         
     }
     
-    func configureHistoryView() {
-        guard  let users = viewModel.users else { return }
-        let historyCollection: HistoryCollectionView = {
-            let collection = HistoryCollectionView(frame: .zero, users: users)
-            collection.translatesAutoresizingMaskIntoConstraints = false
-            return collection
+
+    func configureTableView(posts: [Post]) {
+        guard let users = viewModel.users else { return }
+        let tableView: FeedTableView = {
+            let tableView = FeedTableView(frame: .zero, posts: posts, users: users)
+            tableView.translatesAutoresizingMaskIntoConstraints = false
+            return tableView
         }()
         
-        view.addSubview(historyCollection)
-        
+        scrollView.addSubview(tableView)
+
         let constraints = [
-            historyCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
-            historyCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            historyCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            historyCollection.heightAnchor.constraint(equalToConstant: 50)]
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+         ]
         NSLayoutConstraint.activate(constraints)
     }
     
     private func configureViews() {
-        view.addSubviews(loginButton)
+        
+        view.addSubviews(loginButton, scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.alpha = 0
+        
         let constraints = [
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)]
+            loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    func animatedAlpha() {
+           let animator = UIViewPropertyAnimator(duration: 0.7, curve: .linear) {
+               self.scrollView.alpha = 1
+           }
+        animator.startAnimation()
     }
 }
 

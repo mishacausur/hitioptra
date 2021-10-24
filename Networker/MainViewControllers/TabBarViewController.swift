@@ -28,7 +28,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         tabBar.backgroundColor = .white
         tabBar.unselectedItemTintColor = UIColor(named: "BackgroundViolet")
-        tabBar.alpha = 0.6
+        tabBar.alpha = 0.9
         tabBar.layer.borderColor = UIColor(named: "DarkViolet")?.cgColor
         tabBar.layer.borderWidth = 0.3
         tabBar.tintColor = UIColor(named: "DarkViolet")
