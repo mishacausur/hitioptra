@@ -9,7 +9,10 @@ import Foundation
 import UIKit
 
 struct Post {
+    let author: String
     let date: Date
-    let text: String?
+    let text: String
     let image: UIImage?
+    let likes: Int
+    let comments: Int
 }
