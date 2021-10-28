@@ -33,6 +33,7 @@ class FeedViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "bell"))
         viewModel.getContent()
+        
     }
     
     private let loginButton: UIButton = {

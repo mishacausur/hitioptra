@@ -26,13 +26,23 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.backgroundColor = .white
-        tabBar.unselectedItemTintColor = UIColor(named: "BackgroundViolet")
-        tabBar.alpha = 0.9
+        tabBar.unselectedItemTintColor = UIColor.gray
         tabBar.layer.borderColor = UIColor(named: "DarkViolet")?.cgColor
         tabBar.layer.borderWidth = 0.3
-        tabBar.tintColor = UIColor(named: "DarkViolet")
+//        tabBar.tintColor = UIColor(named: "DarkViolet")
+        tabBar.tintColor = UIColor().accessibleFontColor
+        blurredTabBar()
         setControllers() 
+    }
+    private func blurredTabBar() {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        tabBar.addSubview(blurView)
+        [blurView.topAnchor.constraint(equalTo: tabBar.topAnchor),
+         blurView.trailingAnchor.constraint(equalTo: tabBar.trailingAnchor),
+         blurView.leadingAnchor.constraint(equalTo: tabBar.leadingAnchor),
+         blurView.bottomAnchor.constraint(equalTo: tabBar.bottomAnchor)].forEach { $0.isActive = true }
     }
     
     private func setControllers() {
@@ -65,6 +75,8 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         navVC.navigationBar.tintColor = UIColor(named: "DarkViolet")
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "DarkViolet"), NSAttributedString.Key.font: UIFont(name: "VenrynSans-Regular", size: 24)]
         navVC.title = title
+//        navVC.hidesBarsOnSwipe = true
+//        navVC.hidesBarsWhenVerticallyCompact = true
         navVC.tabBarItem.image = UIImage(systemName: imageName)
         return navVC
     }

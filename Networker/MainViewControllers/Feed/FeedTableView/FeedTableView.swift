@@ -75,6 +75,10 @@ extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
         cell.postImage.image = posts[indexPath.row].image
         let date = Date(timeIntervalSince1970: TimeInterval(posts[indexPath.row].date))
         cell.dateLabel.text = dateFormatter.string(from: date) + " в " + timeFormatter.string(from: date)
+        cell.likeLabel.text = "\(posts[indexPath.row].likes)"
+        cell.completion = {
+            cell.likeLabel.text = "\(self.posts[indexPath.row].likes + 1)"
+        }
         let autor = posts[indexPath.row].author
         switch autor {
         case "Cosmo":

@@ -10,6 +10,8 @@ import UIKit
 
 class FeedTableViewCell: UITableViewCell {
     
+    var completion: (()->())?
+    
     let userImage: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 40
@@ -64,6 +66,25 @@ class FeedTableViewCell: UITableViewCell {
         return image
     }()
     
+    let likeIcon: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = UIColor(named: "DarkViolet")
+        button.setImage(UIImage.init(systemName: "heart"), for: .normal)
+        button.addTarget(self, action: #selector(liked), for: .touchUpInside)
+        return button
+    }()
+
+    let likeLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.font = UIFont(name: "VenrynSans-Regular", size: 16)
+        label.textColor = UIColor.black
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
@@ -72,8 +93,14 @@ class FeedTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc private func liked() {
+        likeIcon.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        completion?()
+    }
+    
     private func setupCell() {
-        contentView.addSubviews(userImage, userName, userType, dateLabel, postTextLabel, postImage)
+        contentView.addSubviews(userImage, userName, userType, dateLabel, postTextLabel, postImage, likeIcon, likeLabel)
         contentView.backgroundColor = .white
         
         let constraints = [
@@ -98,8 +125,14 @@ class FeedTableViewCell: UITableViewCell {
             postImage.topAnchor.constraint(equalTo: postTextLabel.bottomAnchor, constant: 12),
             postImage.leadingAnchor.constraint(equalTo: postTextLabel.leadingAnchor),
             postImage.trailingAnchor.constraint(equalTo: postTextLabel.trailingAnchor),
-            postImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
-            postImage.heightAnchor.constraint(equalToConstant: 184)]
+            postImage.heightAnchor.constraint(equalToConstant: 184),
+        
+            likeIcon.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 12),
+            likeIcon.leadingAnchor.constraint(equalTo: postImage.leadingAnchor, constant: 6),
+        
+            likeLabel.centerYAnchor.constraint(equalTo: likeIcon.centerYAnchor),
+            likeLabel.leadingAnchor.constraint(equalTo: likeIcon.trailingAnchor, constant: 4),
+            likeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),]
         
         NSLayoutConstraint.activate(constraints)
     }
