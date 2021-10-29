@@ -10,23 +10,9 @@ import UIKit
 
 class FeedTableViewCell: UITableViewCell {
     
-    var isLiked = Bool() {
-        didSet {
-            DispatchQueue.main.async {
-                self.likeIcon.setImage(self.isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
-                if self.isLiked == false {
-                    self.disliked?()
-                } else {
-                    self.liked?()
-                }
-            }
-        }
-    }
     
-    var liked: (()->())?
-    
-    var disliked: (()->())?
-    
+    var completion: (()->())?
+
     let userImage: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 40
@@ -85,7 +71,6 @@ class FeedTableViewCell: UITableViewCell {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = UIColor(named: "DarkViolet")
-//        button.setImage(UIImage.init(systemName: "heart"), for: .normal)
         button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
         return button
     }()
@@ -100,17 +85,18 @@ class FeedTableViewCell: UITableViewCell {
         return label
     }()
     
+   
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
     }
-    
+ 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     @objc private func likeTapped() {
-        isLiked.toggle()
+        completion?()
     }
     
     private func setupCell() {
