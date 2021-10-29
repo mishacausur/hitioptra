@@ -16,24 +16,18 @@ protocol FeedViewOutput {
     var users: [UserProfile]? { get }
     var posts: [Post]? { get }
     func getContent()
+    func like(index: Int, likes: Int)
+    func unlike(index: Int, likes: Int)
     func signOut()
 }
 
 class FeedViewModel: FeedViewOutput {
     
-    
     weak var viewInput: FeedViewInput?
     
     var coordinator: AppCoordinator?
     
-    var posts: [Post]? = [] {
-        didSet {
-            guard posts != nil else { return }
-            DispatchQueue.main.async {
-                
-            }
-        }
-    }
+    var posts: [Post]? = []
     
     var users: [UserProfile]?
     
@@ -46,6 +40,16 @@ class FeedViewModel: FeedViewOutput {
                 self.viewInput!.animatedAlpha()
             }
         }
+    }
+    
+    func like(index: Int, likes: Int) {
+        let post = postNames[index]
+        APIManager.shared.liked(post: post, likes: likes)
+    }
+    
+    func unlike(index: Int, likes: Int) {
+        let post = postNames[index]
+        APIManager.shared.unliked(post: post, likes: likes)
     }
  
     func signOut() {

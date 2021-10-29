@@ -62,6 +62,13 @@ class FeedViewController: UIViewController {
         guard let users = viewModel.users else { return }
         let tableView: FeedTableView = {
             let tableView = FeedTableView(frame: .zero, posts: posts, users: users)
+            tableView.liked = { [self] (index, likes) in
+                viewModel.like(index: index, likes: likes)
+            }
+            tableView.disliked = { [self] (index, likes) in
+                viewModel.unlike(index: index, likes: likes)
+                
+            }
             tableView.translatesAutoresizingMaskIntoConstraints = false
             return tableView
         }()

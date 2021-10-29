@@ -12,8 +12,10 @@ struct Post {
     let author: String
     let type: String
     let date: Int
+    let id: Int
     let text: String
     let image: UIImage?
-    let likes: Int
+    var likes: Int
+    var isLiked: Bool
     let comments: Int
 }

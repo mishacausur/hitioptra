@@ -34,9 +34,31 @@ class APIManager {
                 posts.append(post!)
                 completion(posts)
             }
-            
         }
-        
+    }
+    
+    func liked(post: String, likes: Int) {
+        let database = configureFirebase()
+        let doc = database.collection("posts").document(post)
+        doc.updateData(["isLiked" : true, "likes": likes]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
+    func unliked(post: String, likes: Int) {
+        let database = configureFirebase()
+        let doc = database.collection("posts").document(post)
+        doc.updateData(["isLiked" : false, "likes": likes]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
     }
     
     func getPosts(postID: String, contentID: String, completion: @escaping (Post?)->() ) {
@@ -47,7 +69,7 @@ class APIManager {
                 return
             }
             self.getImageForPost(contentID: contentID) { image in
-                let post = Post(author: document?.get("author") as! String, type: document?.get("type") as! String, date: document?.get("date") as! Int, text: document?.get("text") as! String, image: image, likes: document?.get("likes") as! Int, comments: document?.get("comments") as! Int)
+                let post = Post(author: document?.get("author") as! String, type: document?.get("type") as! String, date: document?.get("date") as! Int, id: document?.get("id") as! Int, text: document?.get("text") as! String, image: image, likes: document?.get("likes") as! Int, isLiked: document?.get("isLiked") as! Bool, comments: document?.get("comments") as! Int)
                 completion(post)
             }
         }

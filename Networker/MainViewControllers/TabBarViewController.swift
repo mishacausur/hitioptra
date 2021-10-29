@@ -29,8 +29,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         tabBar.unselectedItemTintColor = UIColor.gray
         tabBar.layer.borderColor = UIColor(named: "DarkViolet")?.cgColor
         tabBar.layer.borderWidth = 0.3
-//        tabBar.tintColor = UIColor(named: "DarkViolet")
-        tabBar.tintColor = UIColor().accessibleFontColor
+        tabBar.tintColor = UIColor(named: "DarkViolet")
         blurredTabBar()
         setControllers() 
     }
@@ -75,8 +74,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         navVC.navigationBar.tintColor = UIColor(named: "DarkViolet")
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "DarkViolet"), NSAttributedString.Key.font: UIFont(name: "VenrynSans-Regular", size: 24)]
         navVC.title = title
-//        navVC.hidesBarsOnSwipe = true
-//        navVC.hidesBarsWhenVerticallyCompact = true
         navVC.tabBarItem.image = UIImage(systemName: imageName)
         return navVC
     }

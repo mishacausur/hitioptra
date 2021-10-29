@@ -13,6 +13,10 @@ class FeedTableView: UIView {
     var posts: [Post]
     var users: [UserProfile]
     
+    var liked: ((Int, Int)->())?
+    
+    var disliked: ((Int, Int)->())?
+    
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
@@ -76,8 +80,16 @@ extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
         let date = Date(timeIntervalSince1970: TimeInterval(posts[indexPath.row].date))
         cell.dateLabel.text = dateFormatter.string(from: date) + " в " + timeFormatter.string(from: date)
         cell.likeLabel.text = "\(posts[indexPath.row].likes)"
-        cell.completion = {
-            cell.likeLabel.text = "\(self.posts[indexPath.row].likes + 1)"
+        cell.isLiked = posts[indexPath.row].isLiked
+        cell.liked = {
+            self.posts[indexPath.row].likes += 1
+            cell.likeLabel.text = "\(self.posts[indexPath.row].likes)"
+            self.liked?(self.posts[indexPath.row].id - 1, self.posts[indexPath.row].likes)
+        }
+        cell.disliked = {
+            self.posts[indexPath.row].likes -= 1
+            cell.likeLabel.text = "\(self.posts[indexPath.row].likes)"
+            self.disliked?(self.posts[indexPath.row].id - 1, self.posts[indexPath.row].likes)
         }
         let autor = posts[indexPath.row].author
         switch autor {

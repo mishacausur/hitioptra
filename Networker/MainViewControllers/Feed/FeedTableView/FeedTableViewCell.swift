@@ -10,7 +10,22 @@ import UIKit
 
 class FeedTableViewCell: UITableViewCell {
     
-    var completion: (()->())?
+    var isLiked = Bool() {
+        didSet {
+            DispatchQueue.main.async {
+                self.likeIcon.setImage(self.isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+                if self.isLiked == false {
+                    self.disliked?()
+                } else {
+                    self.liked?()
+                }
+            }
+        }
+    }
+    
+    var liked: (()->())?
+    
+    var disliked: (()->())?
     
     let userImage: UIImageView = {
         let image = UIImageView()
@@ -70,8 +85,8 @@ class FeedTableViewCell: UITableViewCell {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = UIColor(named: "DarkViolet")
-        button.setImage(UIImage.init(systemName: "heart"), for: .normal)
-        button.addTarget(self, action: #selector(liked), for: .touchUpInside)
+//        button.setImage(UIImage.init(systemName: "heart"), for: .normal)
+        button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
         return button
     }()
 
@@ -94,15 +109,14 @@ class FeedTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func liked() {
-        likeIcon.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        completion?()
+    @objc private func likeTapped() {
+        isLiked.toggle()
     }
     
     private func setupCell() {
         contentView.addSubviews(userImage, userName, userType, dateLabel, postTextLabel, postImage, likeIcon, likeLabel)
         contentView.backgroundColor = .white
-        
+       
         let constraints = [
             userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
             userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 22),
