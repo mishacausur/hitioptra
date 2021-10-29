@@ -67,25 +67,12 @@ class FeedTableViewCell: UITableViewCell {
         return image
     }()
     
-    let likeIcon: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = UIColor(named: "DarkViolet")
-        button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
-        return button
+    let footer: FeedTableViewCellFooterView = {
+        let view = FeedTableViewCellFooterView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
-    let likeLabel: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.font = UIFont(name: "VenrynSans-Regular", size: 16)
-        label.textColor = UIColor.black
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-   
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
@@ -95,14 +82,12 @@ class FeedTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func likeTapped() {
-        completion?()
-    }
-    
     private func setupCell() {
-        contentView.addSubviews(userImage, userName, userType, dateLabel, postTextLabel, postImage, likeIcon, likeLabel)
+        contentView.addSubviews(userImage, userName, userType, dateLabel, postTextLabel, postImage, footer)
         contentView.backgroundColor = .white
-       
+        footer.completion = {
+            self.completion?()
+        }
         let constraints = [
             userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
             userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 22),
@@ -126,13 +111,12 @@ class FeedTableViewCell: UITableViewCell {
             postImage.leadingAnchor.constraint(equalTo: postTextLabel.leadingAnchor),
             postImage.trailingAnchor.constraint(equalTo: postTextLabel.trailingAnchor),
             postImage.heightAnchor.constraint(equalToConstant: 184),
-        
-            likeIcon.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 12),
-            likeIcon.leadingAnchor.constraint(equalTo: postImage.leadingAnchor, constant: 6),
-        
-            likeLabel.centerYAnchor.constraint(equalTo: likeIcon.centerYAnchor),
-            likeLabel.leadingAnchor.constraint(equalTo: likeIcon.trailingAnchor, constant: 4),
-            likeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),]
+            
+            footer.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 12),
+            footer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            footer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            footer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+        ]
         
         NSLayoutConstraint.activate(constraints)
     }

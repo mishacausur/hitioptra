@@ -79,20 +79,20 @@ extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
         cell.postImage.image = posts[indexPath.row].image
         let date = Date(timeIntervalSince1970: TimeInterval(posts[indexPath.row].date))
         cell.dateLabel.text = dateFormatter.string(from: date) + " в " + timeFormatter.string(from: date)
-        cell.likeLabel.text = "\(posts[indexPath.row].likes)"
-        cell.likeIcon.setImage(posts[indexPath.row].isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
-
+        cell.footer.likeLabel.text = "\(posts[indexPath.row].likes)"
+        cell.footer.likeIcon.setImage(posts[indexPath.row].isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+        cell.footer.commentLabel.text = "\(posts[indexPath.row].comments)"
         var isLiked = posts[indexPath.row].isLiked {
             didSet {
                 DispatchQueue.main.async {
-                    cell.likeIcon.setImage(self.posts[indexPath.row].isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+                    cell.footer.likeIcon.setImage(self.posts[indexPath.row].isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
                     if self.posts[indexPath.row].isLiked == false {
                         self.posts[indexPath.row].likes -= 1
-                        cell.likeLabel.text = "\(self.posts[indexPath.row].likes)"
+                        cell.footer.likeLabel.text = "\(self.posts[indexPath.row].likes)"
                         self.disliked?(self.posts[indexPath.row].id - 1, self.posts[indexPath.row].likes)
                     } else {
                         self.posts[indexPath.row].likes += 1
-                        cell.likeLabel.text = "\(self.posts[indexPath.row].likes)"
+                        cell.footer.likeLabel.text = "\(self.posts[indexPath.row].likes)"
                         self.liked?(self.posts[indexPath.row].id - 1, self.posts[indexPath.row].likes)
                     }
                 }
