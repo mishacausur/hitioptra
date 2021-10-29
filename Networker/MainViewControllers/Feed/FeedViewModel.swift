@@ -34,10 +34,11 @@ class FeedViewModel: FeedViewOutput {
     let postNames = ["post1", "post2", "post3", "post4", "post5", "post6"]
     
     func getContent() {
-        APIManager.shared.getContent(name: postNames) { posts in
+        APIManager.shared.getContent(name: postNames) { [self] posts in
             DispatchQueue.main.async {
-                self.viewInput!.configureTableView(posts: posts)
-                self.viewInput!.animatedAlpha()
+                guard let view = viewInput else { return }
+                view.configureTableView(posts: posts)
+                view.animatedAlpha()
             }
         }
     }

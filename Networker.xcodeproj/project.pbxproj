@@ -182,6 +182,7 @@
 		B63456C7271DC46500C15085 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				B6B647CC272C7B9D00DA93D1 /* Profiles */,
 				B638003A27208BFF0082AF30 /* FeedTableView */,
 				B63456C5271DC46200C15085 /* FeedViewController.swift */,
 				B63456C8271DC48100C15085 /* FeedViewModel.swift */,
@@ -257,6 +258,13 @@
 				B62E6560271B3F79008F62AE /* Extensions.swift */,
 			);
 			path = CommonFiles;
+			sourceTree = "<group>";
+		};
+		B6B647CC272C7B9D00DA93D1 /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profiles;
 			sourceTree = "<group>";
 		};
 		B6CDFE5C271B174C001AFBB2 = {

@@ -72,7 +72,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         let navVC = UINavigationController(rootViewController: viewController)
         navVC.navigationBar.barTintColor = UIColor(named: "DarkViolet")
         navVC.navigationBar.tintColor = UIColor(named: "DarkViolet")
-        navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "DarkViolet"), NSAttributedString.Key.font: UIFont(name: "VenrynSans-Regular", size: 24)]
+        navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "DarkViolet") as Any, NSAttributedString.Key.font: UIFont(name: "VenrynSans-Regular", size: 24) as Any]
         navVC.title = title
         navVC.tabBarItem.image = UIImage(systemName: imageName)
         return navVC
