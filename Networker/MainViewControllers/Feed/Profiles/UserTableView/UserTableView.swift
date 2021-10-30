@@ -16,11 +16,10 @@ class UserTableView: UIView {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorColor = UIColor.init(named: "DarkViolet")
-        tableView.separatorColor = UIColor(named: "Accent Blue")
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .none
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(HeaderUserProfileTableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(HeaderUserProfileTableViewCell.self, forCellReuseIdentifier: "Header")
+        tableView.register(FollowersTableViewCell.self, forCellReuseIdentifier: "Followers")
         return tableView
     }()
     
@@ -36,7 +35,7 @@ class UserTableView: UIView {
     
     private func setupView() {
         self.addSubviews(tableView)
-        
+        tableView.backgroundColor = .white
         let constraints = [
             tableView.topAnchor.constraint(equalTo: self.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
@@ -55,7 +54,12 @@ extension UserTableView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell: HeaderUserProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HeaderUserProfileTableViewCell
+            let cell: HeaderUserProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Header", for: indexPath) as! HeaderUserProfileTableViewCell
+            cell.configureCellWithData(profile: profile)
+            return cell
+        }
+        if indexPath.row == 1 {
+            let cell: FollowersTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Followers", for: indexPath) as! FollowersTableViewCell
             cell.configureCellWithData(profile: profile)
             return cell
         }

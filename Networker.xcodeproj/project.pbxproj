@@ -44,6 +44,7 @@
 		B6B647D4272D3ABC00DA93D1 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647D3272D3ABC00DA93D1 /* ProfileData.swift */; };
 		B6B647D7272D4BBD00DA93D1 /* UserTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647D6272D4BBD00DA93D1 /* UserTableView.swift */; };
 		B6B647D9272D4F5E00DA93D1 /* HeaderUserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647D8272D4F5E00DA93D1 /* HeaderUserProfileTableViewCell.swift */; };
+		B6B647DB272D8DB000DA93D1 /* FollowersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647DA272D8DB000DA93D1 /* FollowersTableViewCell.swift */; };
 		B6CDFE69271B174C001AFBB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */; };
 		B6CDFE6B271B174C001AFBB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */; };
 		B6CDFE6D271B174C001AFBB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDFE6C271B174C001AFBB2 /* LoginViewController.swift */; };
@@ -89,6 +90,7 @@
 		B6B647D3272D3ABC00DA93D1 /* ProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
 		B6B647D6272D4BBD00DA93D1 /* UserTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableView.swift; sourceTree = "<group>"; };
 		B6B647D8272D4F5E00DA93D1 /* HeaderUserProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderUserProfileTableViewCell.swift; sourceTree = "<group>"; };
+		B6B647DA272D8DB000DA93D1 /* FollowersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersTableViewCell.swift; sourceTree = "<group>"; };
 		B6CDFE65271B174C001AFBB2 /* Networker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			children = (
 				B6B647D6272D4BBD00DA93D1 /* UserTableView.swift */,
 				B6B647D8272D4F5E00DA93D1 /* HeaderUserProfileTableViewCell.swift */,
+				B6B647DA272D8DB000DA93D1 /* FollowersTableViewCell.swift */,
 			);
 			path = UserTableView;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				B6B647CE272C7CAC00DA93D1 /* UserViewController.swift in Sources */,
 				B6B647D9272D4F5E00DA93D1 /* HeaderUserProfileTableViewCell.swift in Sources */,
 				B6B647C9272B21FB00DA93D1 /* ColorExtension.swift in Sources */,
+				B6B647DB272D8DB000DA93D1 /* FollowersTableViewCell.swift in Sources */,
 				B6B647D4272D3ABC00DA93D1 /* ProfileData.swift in Sources */,
 				B63456CE271DC4B600C15085 /* ProfileViewModel.swift in Sources */,
 				B638003927207E130082AF30 /* HistoryCollectionViewCell.swift in Sources */,

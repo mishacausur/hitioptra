@@ -26,7 +26,7 @@ class UserViewController: UIViewController {
     
     let userName: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "VenrynSans-Regular", size: 14)
+        label.font = UIFont(name: "VenrynSans-Regular", size: 16)
         label.textColor = UIColor(named: "DarkViolet")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -46,7 +46,7 @@ class UserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "BackgroundViolet")
         viewModel.getProfile()
         configureViews()
     }
@@ -62,7 +62,7 @@ class UserViewController: UIViewController {
       
         let constraints = [
          
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 6),
             
             userName.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
@@ -79,10 +79,10 @@ class UserViewController: UIViewController {
         }()
         
         view.addSubview(tableView)
-        [tableView.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 8),
+        [tableView.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 6),
          tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
          tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)].forEach { $0.isActive = true }
+         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)].forEach { $0.isActive = true }
     }
 }
 

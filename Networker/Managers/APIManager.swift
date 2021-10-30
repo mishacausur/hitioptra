@@ -68,7 +68,7 @@ class APIManager {
                 completion(nil)
                 return
             }
-                let profile = ProfileData(name: document?.get("name") as! String, type: document?.get("type") as! String)
+                let profile = ProfileData(name: document?.get("name") as! String, type: document?.get("type") as! String, postsCount: document?.get("postsCount") as! Int, followers: document?.get("followers") as! Int, followings: document?.get("followings") as! Int)
                 completion(profile)
             
         }

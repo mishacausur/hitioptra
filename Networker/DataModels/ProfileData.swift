@@ -11,5 +11,8 @@ struct ProfileData {
     
     let name: String
     let type: String
+    let postsCount: Int
+    let followers: Int
+    let followings: Int
     
 }
