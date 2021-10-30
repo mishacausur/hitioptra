@@ -61,6 +61,19 @@ class APIManager {
         }
     }
     
+    func getProfile(profileID: String, completion: @escaping (ProfileData?)->() ) {
+        let database = configureFirebase()
+        database.collection("authors").document(profileID).getDocument { document, error in
+            guard error == nil else {
+                completion(nil)
+                return
+            }
+                let profile = ProfileData(name: document?.get("name") as! String, type: document?.get("type") as! String)
+                completion(profile)
+            
+        }
+    }
+    
     func getPosts(postID: String, contentID: String, completion: @escaping (Post?)->() ) {
         let database = configureFirebase()
         database.collection("posts").document(postID).getDocument { document, error in

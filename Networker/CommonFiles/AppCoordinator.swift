@@ -62,6 +62,15 @@ class AppCoordinator: Coordinator {
         navigationViewController?.pushViewController(vc, animated: true)
     }
     
+    func toUserProfile(profileID: String) {
+        let viewModel = UserViewModel(author: profileID)
+        let vc = UserViewController(viewModel: viewModel)
+        viewModel.viewInput = vc
+        viewModel.coordinator = self
+        vc.coordinator = self
+        navigationViewController?.pushViewController(vc, animated: true)
+    }
+    
     func signOut() {
         navigationViewController?.popToRootViewController(animated: true)
     }

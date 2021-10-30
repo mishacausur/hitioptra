@@ -18,18 +18,7 @@ class FeedTableView: UIView {
     
     var disliked: ((Int, Int)->())?
     
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ru_RU")
-        formatter.dateFormat = "dd MMMM"
-        return formatter
-    }()
-    
-    let timeFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        return formatter
-    }()
+    var tappedToProfile: ((Post)->())?
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -73,15 +62,8 @@ extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedTableViewCell
-        cell.postTextLabel.text = posts[indexPath.row].text
-        cell.userName.text = posts[indexPath.row].author
-        cell.userType.text = posts[indexPath.row].type
-        cell.postImage.image = posts[indexPath.row].image
-        let date = Date(timeIntervalSince1970: TimeInterval(posts[indexPath.row].date))
-        cell.dateLabel.text = dateFormatter.string(from: date) + " в " + timeFormatter.string(from: date)
-        cell.footer.likeLabel.text = "\(posts[indexPath.row].likes)"
-        cell.footer.likeIcon.setImage(posts[indexPath.row].isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
-        cell.footer.commentLabel.text = "\(posts[indexPath.row].comments)"
+        cell.configureCellWithData(post: posts[indexPath.row])
+        
         var isLiked = posts[indexPath.row].isLiked {
             didSet {
                 DispatchQueue.main.async {
@@ -104,17 +86,10 @@ extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
             self.posts[indexPath.row].isLiked.toggle()
         }
         
-        let autor = posts[indexPath.row].author
-        switch autor {
-        case "Cosmo":
-            cell.userImage.image = UIImage(named: "cosmo")
-        case "Science and Facts":
-            cell.userImage.image = UIImage(named: "science")
-        case "Homo Sapiens":
-            cell.userImage.image = UIImage(named: "person")
-        default:
-            break
+        cell.tapped = {
+            self.tappedToProfile?(self.posts[indexPath.row])
         }
+        
         return cell
     }
     

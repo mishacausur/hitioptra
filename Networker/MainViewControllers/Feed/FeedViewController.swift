@@ -81,6 +81,9 @@ class FeedViewController: UIViewController {
                 viewModel.unlike(index: index, likes: likes)
                 
             }
+            tableView.tappedToProfile = { [self] post in
+                coordinator?.toUserProfile(profileID: post.author)
+            }
             tableView.translatesAutoresizingMaskIntoConstraints = false
             return tableView
         }()
