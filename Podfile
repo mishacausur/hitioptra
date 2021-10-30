@@ -13,5 +13,6 @@ target 'Networker' do
   pod 'FirebaseDatabase'
   pod 'FirebaseStorage'
   pod 'lottie-ios'
+  pod 'SkeletonView'
 
 end

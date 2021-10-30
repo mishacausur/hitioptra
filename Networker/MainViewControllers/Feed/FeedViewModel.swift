@@ -7,18 +7,24 @@
 
 import Foundation
 import FirebaseAuth
+
 protocol FeedViewInput: AnyObject {
+    
+    var shouldAnimate: Bool { get set }
     func configureTableView(posts: [Post])
     func animatedAlpha()
+    
 }
 
 protocol FeedViewOutput {
+    
     var users: [UserProfile]? { get }
     var posts: [Post]? { get }
     func getContent()
     func like(index: Int, likes: Int)
     func unlike(index: Int, likes: Int)
     func signOut()
+    
 }
 
 class FeedViewModel: FeedViewOutput {

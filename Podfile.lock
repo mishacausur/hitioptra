@@ -367,6 +367,7 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
+  - SkeletonView (1.25.2)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -376,6 +377,7 @@ DEPENDENCIES:
   - FirebaseDatabase
   - FirebaseStorage
   - lottie-ios
+  - SkeletonView
 
 SPEC REPOS:
   trunk:
@@ -400,6 +402,7 @@ SPEC REPOS:
     - lottie-ios
     - nanopb
     - PromisesObjC
+    - SkeletonView
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -423,7 +426,8 @@ SPEC CHECKSUMS:
   lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  SkeletonView: 820b2bbd180d7408f3f03b6462cfc3cac39d2ef2
 
-PODFILE CHECKSUM: 3e798f1fe0ae5839458e9c75d1f7e239ba45972b
+PODFILE CHECKSUM: caee316eb6816ed4e45b36a59d34934316fefc4b
 
 COCOAPODS: 1.10.1

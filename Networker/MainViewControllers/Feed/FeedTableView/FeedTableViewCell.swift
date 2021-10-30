@@ -84,7 +84,9 @@ class FeedTableViewCell: UITableViewCell {
     
     private func setupCell() {
         contentView.addSubviews(userImage, userName, userType, dateLabel, postTextLabel, postImage, footer)
+      
         contentView.backgroundColor = .white
+        
         footer.completion = {
             self.completion?()
         }

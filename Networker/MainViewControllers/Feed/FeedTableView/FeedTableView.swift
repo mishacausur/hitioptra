@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SkeletonView
 
 class FeedTableView: UIView {
     
@@ -55,7 +56,6 @@ class FeedTableView: UIView {
     
     private func setupView() {
         self.addSubview(tableView)
-        
         tableView.backgroundColor = .white
         [tableView.topAnchor.constraint(equalTo: self.topAnchor),
          tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -128,3 +128,5 @@ extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
         return header
     }
 }
+
+

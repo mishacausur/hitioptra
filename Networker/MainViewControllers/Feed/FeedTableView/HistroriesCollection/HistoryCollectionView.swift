@@ -39,7 +39,7 @@ class HistoryCollectionView: UIView {
     
     private func setupView() {
         self.addSubview(historyCollection)
-        
+
         historyCollection.backgroundColor = .clear
         [historyCollection.topAnchor.constraint(equalTo: self.topAnchor),
          historyCollection.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -68,7 +68,7 @@ extension HistoryCollectionView: UICollectionViewDelegateFlowLayout, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 22, left: 22, bottom: 16, right: .zero)
+        return UIEdgeInsets(top: .zero, left: 22, bottom: 16, right: .zero)
        
        }
     

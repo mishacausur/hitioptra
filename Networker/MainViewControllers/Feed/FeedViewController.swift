@@ -14,6 +14,8 @@ class FeedViewController: UIViewController {
     
     var viewModel: FeedViewOutput
     
+    var shouldAnimate = true
+    
     let scrollView = UIScrollView(frame: .zero)
     
     init(viewModel: FeedViewOutput) {
@@ -25,6 +27,11 @@ class FeedViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        skeleton.showAnimatedGradientSkeleton()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "BackgroundViolet")
@@ -33,7 +40,6 @@ class FeedViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, image: UIImage(systemName: "bell"))
         viewModel.getContent()
-        
     }
     
     private let loginButton: UIButton = {
@@ -49,6 +55,13 @@ class FeedViewController: UIViewController {
         return button
     }()
     
+    private let skeleton: SkeletonView = {
+        let view = SkeletonView()
+        view.isSkeletonable = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     @objc private func signOut() {
         viewModel.signOut()
     }
@@ -57,7 +70,6 @@ class FeedViewController: UIViewController {
         
     }
     
-
     func configureTableView(posts: [Post]) {
         guard let users = viewModel.users else { return }
         let tableView: FeedTableView = {
@@ -74,7 +86,7 @@ class FeedViewController: UIViewController {
         }()
         
         scrollView.addSubview(tableView)
-
+       
         let constraints = [
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -86,15 +98,20 @@ class FeedViewController: UIViewController {
     
     private func configureViews() {
         
-        view.addSubviews(loginButton, scrollView)
+        view.addSubviews(loginButton, skeleton, scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.alpha = 0
         
         let constraints = [
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            skeleton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            skeleton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            skeleton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            skeleton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 18),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),]
@@ -105,6 +122,8 @@ class FeedViewController: UIViewController {
     func animatedAlpha() {
            let animator = UIViewPropertyAnimator(duration: 0.7, curve: .linear) {
                self.scrollView.alpha = 1
+               self.skeleton.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.6))
+               self.skeleton.removeFromSuperview()
            }
         animator.startAnimation()
     }
