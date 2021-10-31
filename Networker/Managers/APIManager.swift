@@ -37,6 +37,20 @@ class APIManager {
         }
     }
     
+    func getttt(id: [String], completion: @escaping ([UIImage])->()) {
+        var photos: [UIImage] = []
+        id.forEach { value in
+            self.getPhoto(photoID: value) { image in
+                guard image != nil else {
+                    completion(photos)
+                    return }
+                photos.append(image!)
+                completion(photos)
+            }
+        }
+        
+    }
+    
     func liked(post: String, likes: Int) {
         let database = configureFirebase()
         let doc = database.collection("posts").document(post)
@@ -61,6 +75,8 @@ class APIManager {
         }
     }
     
+   
+    
     func getProfile(profileID: String, completion: @escaping (ProfileData?)->() ) {
         let database = configureFirebase()
         database.collection("authors").document(profileID).getDocument { document, error in
@@ -68,9 +84,9 @@ class APIManager {
                 completion(nil)
                 return
             }
-                let profile = ProfileData(name: document?.get("name") as! String, type: document?.get("type") as! String, postsCount: document?.get("postsCount") as! Int, followers: document?.get("followers") as! Int, followings: document?.get("followings") as! Int)
+           
+                let profile = ProfileData(name: document?.get("name") as! String, type: document?.get("type") as! String, postsCount: document?.get("postsCount") as! Int, followers: document?.get("followers") as! Int, followings: document?.get("followings") as! Int, photos: document?.get("photos") as! Int)
                 completion(profile)
-            
         }
     }
     
@@ -94,6 +110,23 @@ class APIManager {
         let path = reference.child("pictures")
         var image: UIImage = UIImage(named: "imageDownloadErrorMessage")!
         let file = path.child(contentID + ".jpg")
+        file.getData(maxSize: 1024*1024) { data, error in
+            guard error == nil else {
+                completion(image)
+                return
+            }
+            guard let data = data, let dataImage = UIImage(data: data) else { return }
+            image = dataImage
+            completion(image)
+        }
+    }
+    
+    func getPhoto(photoID: String, completion: @escaping (UIImage?)->() ) {
+        let storage = Storage.storage()
+        let reference = storage.reference()
+        let path = reference.child("photos")
+        var image: UIImage = UIImage(named: "imageDownloadErrorMessage")!
+        let file = path.child(photoID + ".jpg")
         file.getData(maxSize: 1024*1024) { data, error in
             guard error == nil else {
                 completion(image)

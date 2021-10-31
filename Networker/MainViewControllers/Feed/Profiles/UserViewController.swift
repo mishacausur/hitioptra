@@ -13,6 +13,8 @@ class UserViewController: UIViewController {
     
     var viewModel: UserViewOutput
     
+    var photos: [UIImage] = []
+    
     private let backButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +50,7 @@ class UserViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "BackgroundViolet")
         viewModel.getProfile()
+        viewModel.getPhotos()
         configureViews()
     }
     
@@ -71,9 +74,13 @@ class UserViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
+    func buildPhotoCollectionWithPhotos(photos: [UIImage]) {
+        
+    }
+    
     private func setupProfileTableView(profile: ProfileData) {
         let tableView: UserTableView = {
-            let tableView = UserTableView(frame: .zero, profile: profile)
+            let tableView = UserTableView(frame: .zero, profile: profile, photos: photos)
             tableView.translatesAutoresizingMaskIntoConstraints = false
             return tableView
         }()

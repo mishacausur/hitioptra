@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct ProfileData {
     
@@ -14,5 +15,6 @@ struct ProfileData {
     let postsCount: Int
     let followers: Int
     let followings: Int
-    
+    let photos: Int
+
 }

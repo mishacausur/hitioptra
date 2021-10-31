@@ -12,19 +12,24 @@ class UserTableView: UIView {
     
     var profile: ProfileData
     
+    var photos: [UIImage] = []
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(HeaderUserProfileTableViewCell.self, forCellReuseIdentifier: "Header")
         tableView.register(FollowersTableViewCell.self, forCellReuseIdentifier: "Followers")
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "Photos")
         return tableView
     }()
     
-    init(frame: CGRect, profile: ProfileData) {
+    init(frame: CGRect, profile: ProfileData, photos: [UIImage]) {
         self.profile = profile
+        self.photos = photos
         super.init(frame: frame)
         setupView()
     }
@@ -60,6 +65,12 @@ extension UserTableView: UITableViewDelegate, UITableViewDataSource {
         }
         if indexPath.row == 1 {
             let cell: FollowersTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Followers", for: indexPath) as! FollowersTableViewCell
+            cell.configureCellWithData(profile: profile)
+            return cell
+        }
+        
+        if indexPath.row == 2 {
+            let cell: PhotosTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Photos", for: indexPath) as! PhotosTableViewCell
             cell.configureCellWithData(profile: profile)
             return cell
         }
