@@ -9,11 +9,8 @@ import Foundation
 import FirebaseAuth
 
 protocol FeedViewInput: AnyObject {
-    
-    var shouldAnimate: Bool { get set }
     func configureTableView(posts: [Post])
     func animatedAlpha()
-    
 }
 
 protocol FeedViewOutput {

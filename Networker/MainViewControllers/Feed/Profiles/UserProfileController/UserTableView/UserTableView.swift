@@ -11,9 +11,7 @@ import UIKit
 class UserTableView: UIView {
     
     var profile: ProfileData
-    
-    var photos: [UIImage] = []
-    
+  
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
@@ -27,9 +25,8 @@ class UserTableView: UIView {
         return tableView
     }()
     
-    init(frame: CGRect, profile: ProfileData, photos: [UIImage]) {
+    init(frame: CGRect, profile: ProfileData) {
         self.profile = profile
-        self.photos = photos
         super.init(frame: frame)
         setupView()
     }

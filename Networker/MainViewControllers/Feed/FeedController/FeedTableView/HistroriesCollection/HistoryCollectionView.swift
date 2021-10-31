@@ -17,8 +17,8 @@ class HistoryCollectionView: UIView {
         layout.scrollDirection = .horizontal
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
-//        collection.alpha = 1
         collection.showsHorizontalScrollIndicator = false
+        collection.alpha = 0
         collection.delegate = self
         collection.dataSource = self
         
@@ -35,6 +35,13 @@ class HistoryCollectionView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func startAnimation() {
+        let animator = UIViewPropertyAnimator(duration: 1.2, curve: .linear) {
+            self.historyCollection.alpha = 1
+        }
+        animator.startAnimation()
     }
     
     private func setupView() {

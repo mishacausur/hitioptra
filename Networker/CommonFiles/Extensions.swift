@@ -45,3 +45,18 @@ extension String {
         return pureNumber
     }
 }
+
+protocol ViewController {
+    
+    associatedtype RootView: UIView
+    
+}
+
+extension ViewController where Self: UIViewController {
+    
+    func view() -> RootView {
+        return self.view as! RootView
+    }
+}
+
+typealias Completion = (()->())?

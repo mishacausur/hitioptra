@@ -63,7 +63,7 @@ extension UserPhotoCollectionView: UICollectionViewDelegateFlowLayout, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: .zero, left: .zero, bottom: .zero, right: .zero)
+        return UIEdgeInsets(top: .zero, left: 22, bottom: .zero, right: .zero)
        
        }
     

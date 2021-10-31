@@ -66,7 +66,7 @@ class PhotosTableViewCell: UITableViewCell {
         contentView.addSubviews(photoCollection)
         
         [photoCollection.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: 8),
-         photoCollection.leadingAnchor.constraint(equalTo: photosLabel.leadingAnchor),
+         photoCollection.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
          photoCollection.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
          photoCollection.heightAnchor.constraint(equalToConstant: 120),
          photoCollection.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)].forEach { $0.isActive = true }

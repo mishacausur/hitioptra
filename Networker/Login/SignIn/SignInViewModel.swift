@@ -8,18 +8,14 @@
 import Foundation
 
 protocol SignInViewInput: AnyObject {
-    
 }
 
 protocol SignInViewOutput {
-    
     func auth(phone: String, completion: @escaping (Bool)->())
-    
 }
 
 class SignInViewModel: SignInViewOutput {
-    
-    
+   
     weak var viewInput: SignInViewInput?
     
     var coordinator: AppCoordinator?
@@ -34,5 +30,4 @@ class SignInViewModel: SignInViewOutput {
             completion(true)
         }
     }
-    
 }

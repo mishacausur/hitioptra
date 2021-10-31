@@ -165,7 +165,7 @@ class FeedTableViewCell: UITableViewCell {
             postImage.topAnchor.constraint(equalTo: postTextLabel.bottomAnchor, constant: 12),
             postImage.leadingAnchor.constraint(equalTo: postTextLabel.leadingAnchor),
             postImage.trailingAnchor.constraint(equalTo: postTextLabel.trailingAnchor),
-            postImage.heightAnchor.constraint(equalToConstant: 184),
+            postImage.heightAnchor.constraint(equalToConstant: 200),
             
             footer.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 12),
             footer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

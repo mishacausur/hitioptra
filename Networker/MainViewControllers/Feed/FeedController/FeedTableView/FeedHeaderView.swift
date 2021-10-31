@@ -29,6 +29,7 @@ class FeedHeaderView: UITableViewHeaderFooterView {
     private func setupCell(users: [UserProfile]) {
         let historyCollection = HistoryCollectionView(frame: .zero, users: users)
         historyCollection.translatesAutoresizingMaskIntoConstraints = false
+        historyCollection.startAnimation()
         contentView.addSubview(historyCollection)
         
         let constraints = [

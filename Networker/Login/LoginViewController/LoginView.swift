@@ -1,15 +1,16 @@
 //
-//  LoginViewController.swift
+//  LoginView.swift
 //  Networker
 //
-//  Created by Misha Causur on 16.10.2021.
+//  Created by Misha Causur on 31.10.2021.
 //
 
+import Foundation
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginView: UIView {
     
-    var coordinator: AppCoordinator?
+    var completion: (()->())?
     
     private let appLabel: UILabel = {
         let label = UILabel()
@@ -68,43 +69,42 @@ class LoginViewController: UIViewController {
         return view
     }()
     
-    @objc private func signIn(){
-        coordinator?.signIn()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        circleImageLeft.rotateBack()
-    }
-    
-    override func viewDidLoad() {
-        view.backgroundColor = UIColor(named: "BackgroundViolet")
-        
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configureViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func signIn(){
+        completion?()
+    }
+    
+    func animation() {
         circleImageLeft.rotateBack()
-        super.viewDidLoad()
-        
     }
 
     private func configureViews() {
-        view.addSubviews(backgroundImage, circleImageLeft, signInButton, heartLogo, loginButton, appLabel)
+        self.addSubviews(backgroundImage, circleImageLeft, signInButton, heartLogo, loginButton, appLabel)
  
-        
         let constraints = [
-            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            appLabel.bottomAnchor.constraint(equalTo: view.centerYAnchor),
-            appLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            
+            appLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor),
+            appLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
             heartLogo.topAnchor.constraint(equalTo: appLabel.bottomAnchor, constant: 22),
             heartLogo.widthAnchor.constraint(equalToConstant: 74),
             heartLogo.heightAnchor.constraint(equalTo: heartLogo.widthAnchor),
             heartLogo.centerXAnchor.constraint(equalTo: appLabel.centerXAnchor),
             
-            signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signInButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             signInButton.topAnchor.constraint(equalTo: appLabel.centerYAnchor, constant: 184),
         
             loginButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor),
@@ -112,12 +112,9 @@ class LoginViewController: UIViewController {
         
             circleImageLeft.widthAnchor.constraint(equalToConstant: 600),
             circleImageLeft.heightAnchor.constraint(equalTo: circleImageLeft.widthAnchor),
-            circleImageLeft.centerXAnchor.constraint(equalTo: view.leftAnchor, constant: 88),
-            circleImageLeft.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: -300)]
+            circleImageLeft.centerXAnchor.constraint(equalTo: self.leftAnchor, constant: 88),
+            circleImageLeft.centerYAnchor.constraint(equalTo: self.bottomAnchor, constant: -300)]
     
         NSLayoutConstraint.activate(constraints)
-       
     }
-
 }
-

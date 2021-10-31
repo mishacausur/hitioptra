@@ -66,7 +66,6 @@ class AppCoordinator: Coordinator {
         let viewModel = UserViewModel(author: profileID)
         let vc = UserViewController(viewModel: viewModel)
         viewModel.viewInput = vc
-        viewModel.getPhotos()
         viewModel.coordinator = self
         vc.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
