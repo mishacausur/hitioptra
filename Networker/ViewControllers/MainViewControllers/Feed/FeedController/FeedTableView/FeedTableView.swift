@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import SkeletonView
+//import SkeletonView
 
 class FeedTableView: UIView {
     
@@ -71,11 +71,11 @@ extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
                     if self.posts[indexPath.row].isLiked == false {
                         self.posts[indexPath.row].likes -= 1
                         cell.footer.likeLabel.text = "\(self.posts[indexPath.row].likes)"
-                        self.disliked?(self.posts[indexPath.row].id - 1, self.posts[indexPath.row].likes)
+                        self.disliked?(self.posts[indexPath.row].id, self.posts[indexPath.row].likes)
                     } else {
                         self.posts[indexPath.row].likes += 1
                         cell.footer.likeLabel.text = "\(self.posts[indexPath.row].likes)"
-                        self.liked?(self.posts[indexPath.row].id - 1, self.posts[indexPath.row].likes)
+                        self.liked?(self.posts[indexPath.row].id, self.posts[indexPath.row].likes)
                     }
                 }
             }

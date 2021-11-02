@@ -29,6 +29,12 @@ class UserViewController: UIViewController, ViewController {
         view().backButtonTappedCompletion = {
             self.coordinator?.dismiss()
         }
+        view().liked = { [self] (index, likes) in
+            viewModel.like(index: index, likes: likes)
+        }
+        view().disliked = { [self] (index, likes) in
+            viewModel.unlike(index: index, likes: likes)
+        }
         viewModel.getProfile()
     }
     
@@ -40,7 +46,7 @@ class UserViewController: UIViewController, ViewController {
 
 extension UserViewController: UserViewInput {
     
-    func configureViewWithData(profile: ProfileData) {
-        view().configureViewWithData(profile: profile)
+    func configureViewWithData(profile: ProfileData, posts: [Post]) {
+        view().configureViewWithData(profile: profile, posts: posts)
     }
 }

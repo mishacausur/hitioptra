@@ -61,7 +61,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
         
         let favoriteVC = FavoriteViewController()
-        let favoriteNavVC = configureViewControllers(viewController: favoriteVC, title: "Избранное", imageName: "star.circle.fill")
+        let favoriteNavVC = configureViewControllers(viewController: favoriteVC, title: "Избранное", imageName: "heart.circle.fill")
         favoriteVC.coordinator = coordinator
 
         viewControllers = [feedNavVC, profileNavVC, favoriteNavVC]

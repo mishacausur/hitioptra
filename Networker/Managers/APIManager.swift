@@ -37,7 +37,7 @@ class APIManager {
         }
     }
     
-    func getttt(id: [String], completion: @escaping ([UIImage])->()) {
+    func getPhotosFrom(id: [String], completion: @escaping ([UIImage])->()) {
         var photos: [UIImage] = []
         id.forEach { value in
             self.getPhoto(photoID: value) { image in
@@ -85,7 +85,7 @@ class APIManager {
                 return
             }
            
-                let profile = ProfileData(name: document?.get("name") as! String, type: document?.get("type") as! String, postsCount: document?.get("postsCount") as! Int, followers: document?.get("followers") as! Int, followings: document?.get("followings") as! Int, photos: document?.get("photos") as! Int)
+            let profile = ProfileData(name: document?.get("name") as! String, type: document?.get("type") as! String, postsCount: document?.get("postsCount") as! Int, followers: document?.get("followers") as! Int, followings: document?.get("followings") as! Int, photos: document?.get("photos") as! Int, posts: document?.get("posts") as! [String])
                 completion(profile)
         }
     }

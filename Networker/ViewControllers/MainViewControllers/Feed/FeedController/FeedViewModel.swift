@@ -47,12 +47,12 @@ class FeedViewModel: FeedViewOutput {
     }
     
     func like(index: Int, likes: Int) {
-        let post = postNames[index]
+        let post = "post\(index)"
         APIManager.shared.liked(post: post, likes: likes)
     }
     
     func unlike(index: Int, likes: Int) {
-        let post = postNames[index]
+        let post = "post\(index)"
         APIManager.shared.unliked(post: post, likes: likes)
     }
  

@@ -99,7 +99,6 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     @objc private func tappedToProfile() {
-        print("tapped")
         tapped?()
     }
     

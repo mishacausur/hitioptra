@@ -54,6 +54,9 @@
 		B6B647EF272ED8A900DA93D1 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647EE272ED8A900DA93D1 /* StartView.swift */; };
 		B6B647F1272EDC2500DA93D1 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647F0272EDC2500DA93D1 /* FeedView.swift */; };
 		B6B647F5272EE90F00DA93D1 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647F4272EE90F00DA93D1 /* UserProfileView.swift */; };
+		B6B647FB27318FDB00DA93D1 /* 75280-infinity-loader.json in Resources */ = {isa = PBXBuildFile; fileRef = B6B647FA27318FDB00DA93D1 /* 75280-infinity-loader.json */; };
+		B6B647FD2731913400DA93D1 /* FavortiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647FC2731913400DA93D1 /* FavortiteView.swift */; };
+		B6B647FF2731923800DA93D1 /* 71420-sparkle.json in Resources */ = {isa = PBXBuildFile; fileRef = B6B647FE2731923800DA93D1 /* 71420-sparkle.json */; };
 		B6CDFE69271B174C001AFBB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */; };
 		B6CDFE6B271B174C001AFBB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */; };
 		B6CDFE6D271B174C001AFBB2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CDFE6C271B174C001AFBB2 /* LoginViewController.swift */; };
@@ -109,6 +112,9 @@
 		B6B647EE272ED8A900DA93D1 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		B6B647F0272EDC2500DA93D1 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		B6B647F4272EE90F00DA93D1 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		B6B647FA27318FDB00DA93D1 /* 75280-infinity-loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "75280-infinity-loader.json"; sourceTree = "<group>"; };
+		B6B647FC2731913400DA93D1 /* FavortiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavortiteView.swift; sourceTree = "<group>"; };
+		B6B647FE2731923800DA93D1 /* 71420-sparkle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "71420-sparkle.json"; sourceTree = "<group>"; };
 		B6CDFE65271B174C001AFBB2 /* Networker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Networker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -217,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				B6B647F2272EE8B000DA93D1 /* FeedController */,
-				B6B647CC272C7B9D00DA93D1 /* Profiles */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				B63456D0271DC4CA00C15085 /* FavoriteViewController.swift */,
+				B6B647FC2731913400DA93D1 /* FavortiteView.swift */,
 				B63456D2271DC4D600C15085 /* FavoriteViewModel.swift */,
 			);
 			path = Favorite;
@@ -244,6 +250,8 @@
 			isa = PBXGroup;
 			children = (
 				B638002A271F0CAE0082AF30 /* 68367-newspaper-loading.json */,
+				B6B647FE2731923800DA93D1 /* 71420-sparkle.json */,
+				B6B647FA27318FDB00DA93D1 /* 75280-infinity-loader.json */,
 				B638002C271F0F070082AF30 /* 65696-tick-animation-success-feedback.json */,
 			);
 			path = AnimationFiles;
@@ -272,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				B638003527207CBB0082AF30 /* HistroriesCollection */,
+				B6B647CC272C7B9D00DA93D1 /* Profiles */,
 				B638003C2722C1A80082AF30 /* FeedTableView.swift */,
 				B638003E2722C1B40082AF30 /* FeedTableViewCell.swift */,
 				B6B647D1272D101900DA93D1 /* SkeletonView.swift */,
@@ -284,10 +293,10 @@
 		B638003B2722C0E20082AF30 /* CommonFiles */ = {
 			isa = PBXGroup;
 			children = (
+				B6B648012731A62E00DA93D1 /* Settings */,
+				B6380029271F0C9B0082AF30 /* AnimationFiles */,
 				B62E6557271B2D9C008F62AE /* Fonts */,
 				B6CDFE7C271B1900001AFBB2 /* AppCoordinator.swift */,
-				B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */,
-				B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */,
 				B6CDFE73271B174D001AFBB2 /* LaunchScreen.storyboard */,
 				B62E6560271B3F79008F62AE /* Extensions.swift */,
 			);
@@ -305,10 +314,10 @@
 		B6B647D5272D4B8600DA93D1 /* UserTableView */ = {
 			isa = PBXGroup;
 			children = (
-				B6B647D6272D4BBD00DA93D1 /* UserTableView.swift */,
-				B6B647E5272EB05D00DA93D1 /* FollowCell */,
 				B6B647E4272EB04300DA93D1 /* HeaderCell */,
+				B6B647E5272EB05D00DA93D1 /* FollowCell */,
 				B6B647E3272EB03500DA93D1 /* PhotoCell */,
+				B6B647D6272D4BBD00DA93D1 /* UserTableView.swift */,
 			);
 			path = UserTableView;
 			sourceTree = "<group>";
@@ -387,6 +396,25 @@
 			path = UserProfileController;
 			sourceTree = "<group>";
 		};
+		B6B648002731A60A00DA93D1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B62E655F271B30A6008F62AE /* Login */,
+				B63456C4271DC42A00C15085 /* MainViewControllers */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B6B648012731A62E00DA93D1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */,
+				B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */,
+				B6CDFE71271B174D001AFBB2 /* Assets.xcassets */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		B6CDFE5C271B174C001AFBB2 = {
 			isa = PBXGroup;
 			children = (
@@ -408,15 +436,12 @@
 		B6CDFE67271B174C001AFBB2 /* Networker */ = {
 			isa = PBXGroup;
 			children = (
-				B638003B2722C0E20082AF30 /* CommonFiles */,
-				B638003027207A580082AF30 /* DataModels */,
-				B6380029271F0C9B0082AF30 /* AnimationFiles */,
-				B63456BD271DAECE00C15085 /* Managers */,
-				B62E655F271B30A6008F62AE /* Login */,
-				B63456C4271DC42A00C15085 /* MainViewControllers */,
-				B6CDFE71271B174D001AFBB2 /* Assets.xcassets */,
 				B6CDFE76271B174D001AFBB2 /* Info.plist */,
 				B63456B9271D9E8F00C15085 /* GoogleService-Info.plist */,
+				B6B648002731A60A00DA93D1 /* ViewControllers */,
+				B638003B2722C0E20082AF30 /* CommonFiles */,
+				B638003027207A580082AF30 /* DataModels */,
+				B63456BD271DAECE00C15085 /* Managers */,
 			);
 			path = Networker;
 			sourceTree = "<group>";
@@ -488,7 +513,9 @@
 				B6CDFE75271B174D001AFBB2 /* LaunchScreen.storyboard in Resources */,
 				B62E6558271B2E30008F62AE /* VenrynSans-Regular.ttf in Resources */,
 				B6CDFE72271B174D001AFBB2 /* Assets.xcassets in Resources */,
+				B6B647FF2731923800DA93D1 /* 71420-sparkle.json in Resources */,
 				B638002D271F0F070082AF30 /* 65696-tick-animation-success-feedback.json in Resources */,
+				B6B647FB27318FDB00DA93D1 /* 75280-infinity-loader.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6B647DD272D940C00DA93D1 /* PhotosTableViewCell.swift in Sources */,
+				B6B647FD2731913400DA93D1 /* FavortiteView.swift in Sources */,
 				B63800452725A28A0082AF30 /* FeedHeaderView.swift in Sources */,
 				B6ABB8D4271B58E400C75B6A /* SignInViewController.swift in Sources */,
 				B63456C3271DB87200C15085 /* ConfirmationViewModel.swift in Sources */,

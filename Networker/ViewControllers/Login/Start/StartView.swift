@@ -1,17 +1,17 @@
 //
-//  StartViewController.swift
+//  StartView.swift
 //  Networker
 //
-//  Created by Misha Causur on 19.10.2021.
+//  Created by Misha Causur on 31.10.2021.
 //
 
 import UIKit
 import Lottie
 
-class StartViewController: UIViewController {
-
-    var coordinator: AppCoordinator?
+class StartView: UIView {
     
+    var nextButtonTappedCompletion: (()->())?
+
     private let confirmationLabel: UILabel = {
         let label = UILabel()
         label.text = "Вы успешно зарегистрировались"
@@ -63,43 +63,44 @@ class StartViewController: UIViewController {
         return view
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "BackgroundViolet")
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configureViews()
         animationView.loopMode = .repeatBackwards(10)
         animationView.play()
-//        nextVC()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     @objc private func nextVC() {
-        
-        coordinator?.startCurrentUserLoggedIn()
+        nextButtonTappedCompletion?()
     }
 
     private func configureViews() {
-        view.addSubviews(backgroundImage, confirmationLabel, animationView, infoLabel, signInButton)
+        self.addSubviews(backgroundImage, confirmationLabel, animationView, infoLabel, signInButton)
         
         let constraints = [
-            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
-            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            backgroundImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
            
-            confirmationLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 164),
-            confirmationLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            confirmationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 44),
-            confirmationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -44),
+            confirmationLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 164),
+            confirmationLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            confirmationLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 44),
+            confirmationLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -44),
         
-            animationView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            animationView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             animationView.widthAnchor.constraint(equalToConstant: 274),
             animationView.heightAnchor.constraint(equalTo: animationView.widthAnchor),
-            animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            animationView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         
             infoLabel.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 44),
-            infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            infoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 44),
-            infoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -44),
+            infoLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            infoLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 44),
+            infoLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -44),
         
             signInButton.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 44),
             signInButton.centerXAnchor.constraint(equalTo: infoLabel.centerXAnchor),]

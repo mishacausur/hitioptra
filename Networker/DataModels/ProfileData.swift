@@ -16,5 +16,5 @@ struct ProfileData {
     let followers: Int
     let followings: Int
     let photos: Int
-
+    let posts: [String]
 }
