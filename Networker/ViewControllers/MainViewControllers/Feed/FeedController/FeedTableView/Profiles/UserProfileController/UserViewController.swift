@@ -14,7 +14,7 @@ class UserViewController: UIViewController, ViewController {
     var coordinator: AppCoordinator?
     
     var viewModel: UserViewOutput
-   
+    
     init(viewModel: UserViewOutput) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -23,7 +23,7 @@ class UserViewController: UIViewController, ViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view().backButtonTappedCompletion = {

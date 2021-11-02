@@ -11,7 +11,7 @@ import FirebaseDatabase
 class FeedViewController: UIViewController, ViewController {
     
     typealias RootView = FeedView
-
+    
     var coordinator: AppCoordinator?
     
     var viewModel: FeedViewOutput
@@ -24,7 +24,7 @@ class FeedViewController: UIViewController, ViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view().signOutTapped = {

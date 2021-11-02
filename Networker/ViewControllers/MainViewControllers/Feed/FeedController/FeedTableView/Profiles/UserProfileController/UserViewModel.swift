@@ -25,7 +25,7 @@ class UserViewModel: UserViewOutput {
     var coordinator: AppCoordinator?
     
     var author: String
- 
+    
     init(author: String) {
         self.author = author
     }
@@ -43,10 +43,10 @@ class UserViewModel: UserViewOutput {
     func getProfile() {
         APIManager.shared.getProfile(profileID: author) { profile in
             guard let profile = profile else { return }
-           
+            
             APIManager.shared.getContent(name: profile.posts) { posts in
                 self.viewInput?.configureViewWithData(profile: profile, posts: posts)
-
+                
             }
         }
     }

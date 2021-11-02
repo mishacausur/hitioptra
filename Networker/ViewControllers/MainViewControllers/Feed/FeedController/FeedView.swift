@@ -136,7 +136,7 @@ class FeedView: UIView {
             generalViewAnimator.startAnimation()
         }
         skeletonAnimator.startAnimation()
-       
+        
     }
     
     @objc private func signOut() {

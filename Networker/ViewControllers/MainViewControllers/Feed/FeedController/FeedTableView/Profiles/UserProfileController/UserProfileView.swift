@@ -19,7 +19,7 @@ class UserProfileView: UIView {
     var disliked: ((Int, Int)->())?
     
     private let scrollView = UIScrollView(frame: .zero)
-
+    
     private let backButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -63,25 +63,25 @@ class UserProfileView: UIView {
     @objc private func backButtonTapped() {
         backButtonTappedCompletion?()
     }
-
+    
     
     private func configureViews() {
         self.addSubviews(backView, backButton, userName, animationView)
         backView.translatesAutoresizingMaskIntoConstraints = false
         backView.alpha = 0
         let constraints = [
-         
+            
             backButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             backButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 6),
             
             userName.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
             userName.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-        
+            
             backView.topAnchor.constraint(equalTo: self.topAnchor),
             backView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             backView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             backView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-        
+            
             animationView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             animationView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             animationView.widthAnchor.constraint(equalToConstant: 260),
@@ -96,7 +96,7 @@ class UserProfileView: UIView {
             self.setupProfileTableView(profile: profile, posts: posts)
             self.animatedAlpha()
         }
-       
+        
     }
     
     private func setupProfileTableView(profile: ProfileData, posts: [Post]) {

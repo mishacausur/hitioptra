@@ -55,7 +55,7 @@ class FeedViewModel: FeedViewOutput {
         let post = "post\(index)"
         APIManager.shared.unliked(post: post, likes: likes)
     }
- 
+    
     func signOut() {
         do {
             try Auth.auth().signOut()

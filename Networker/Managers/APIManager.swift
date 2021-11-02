@@ -75,7 +75,7 @@ class APIManager {
         }
     }
     
-   
+    
     
     func getProfile(profileID: String, completion: @escaping (ProfileData?)->() ) {
         let database = configureFirebase()
@@ -84,9 +84,9 @@ class APIManager {
                 completion(nil)
                 return
             }
-           
+            
             let profile = ProfileData(name: document?.get("name") as! String, type: document?.get("type") as! String, postsCount: document?.get("postsCount") as! Int, followers: document?.get("followers") as! Int, followings: document?.get("followings") as! Int, photos: document?.get("photos") as! Int, posts: document?.get("posts") as! [String])
-                completion(profile)
+            completion(profile)
         }
     }
     
