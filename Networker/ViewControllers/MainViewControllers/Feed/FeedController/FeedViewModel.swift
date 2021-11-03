@@ -21,7 +21,6 @@ protocol FeedViewOutput {
     func like(index: Int, likes: Int)
     func unlike(index: Int, likes: Int)
     func signOut()
-    
 }
 
 class FeedViewModel: FeedViewOutput {
@@ -34,14 +33,15 @@ class FeedViewModel: FeedViewOutput {
     
     var users: [UserProfile]?
     
-    let postNames = ["post1", "post2", "post3", "post4", "post5", "post6"]
-    
     func getContent() {
-        APIManager.shared.getContent(name: postNames) { [self] posts in
-            DispatchQueue.main.async {
-                guard let view = viewInput else { return }
-                view.configureTableView(posts: posts)
-                view.animatedAlpha()
+        APIManager.shared.getData { [self] pos in
+            guard let post = pos else { return }
+            APIManager.shared.getContent(name: post) { posts in
+                DispatchQueue.main.async {
+                    guard let view = viewInput else { return }
+                    view.configureTableView(posts: posts)
+                    view.animatedAlpha()
+                }
             }
         }
     }

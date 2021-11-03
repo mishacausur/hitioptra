@@ -12,7 +12,6 @@ protocol Coordinator {
     
     var viewControllers: [Coordinator] { get set }
     var navigationViewController: UINavigationController? { get set }
-    
     func startWithAuth()
     func startCurrentUserLoggedIn()
 }
@@ -27,22 +26,23 @@ class AppCoordinator: Coordinator {
         self.navigationViewController = navigationViewController
     }
     func startWithAuth() {
+        navigationViewController?.viewControllers.removeAll()
         let vc = LoginViewController()
         vc.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
     }
     
     func startCurrentUserLoggedIn() {
-        guard let navVC = navigationViewController else { fatalError() }
-        let tabBarVC = TabBarViewController(navController: navVC, coordinator: self)
+        navigationViewController?.viewControllers.removeAll()
+        let tabBarVC = TabBarViewController(coordinator: self)
         navigationViewController?.pushViewController(tabBarVC, animated: true)
     }
+    
     func startWithSuccess() {
         let vc = StartViewController()
         vc.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
     }
-    
     
     func signIn() {
         let viewModel = SignInViewModel()

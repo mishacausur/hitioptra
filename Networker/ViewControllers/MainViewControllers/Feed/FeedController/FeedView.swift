@@ -17,6 +17,8 @@ class FeedView: UIView {
     
     var toUser: ((String)->())?
     
+    var refresh: (()->())?
+    
     let scrollView = UIScrollView(frame: .zero)
     
     private let searchButton: UIButton = {
@@ -80,6 +82,9 @@ class FeedView: UIView {
             }
             tableView.tappedToProfile = { [self] post in
                 self.toUser?(post.author)
+            }
+            tableView.refresh = {
+                self.refresh?()
             }
             tableView.translatesAutoresizingMaskIntoConstraints = false
             return tableView

@@ -17,7 +17,9 @@ class UserTableView: UIView {
     var liked: ((Int, Int)->())?
     
     var disliked: ((Int, Int)->())?
-  
+    
+    var refresh: (()->())?
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
@@ -37,10 +39,26 @@ class UserTableView: UIView {
         self.posts = posts.sorted(by: { $0.date > $1.date })
         super.init(frame: frame)
         setupView()
+        configureRefreshControl()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.tintColor = UIColor.init(named: "DarkViolet")
+        tableView.refreshControl?.attributedTitle = NSAttributedString.init("Обновить")
+        tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    @objc private func handleRefreshControl() {
+        refresh?()
+        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
     
     private func setupView() {
@@ -72,6 +90,22 @@ extension UserTableView: UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            let header = UserProfileHeaderForSectionView()
+            header.configure(count: posts.count)
+            return header
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 40
+        }
+        return 10
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             if indexPath.row == 0 {
@@ -91,10 +125,11 @@ extension UserTableView: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
         }
-       
+        
         if (indexPath.section == 1) {
             let cell: FeedTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Post", for: indexPath) as! FeedTableViewCell
             cell.configureCellWithData(post: posts[indexPath.row])
+            cell.topLine.alpha = 0.3
             
             var isLiked = posts[indexPath.row].isLiked {
                 didSet {
@@ -112,19 +147,12 @@ extension UserTableView: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             }
-            
             cell.completion = {
                 isLiked.toggle()
                 self.posts[indexPath.row].isLiked.toggle()
             }
-            
             return cell
-        
         }
         return UITableViewCell()
     }
-   
-    
-    
-    
 }

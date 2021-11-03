@@ -24,6 +24,18 @@ class APIManager {
         return datebase
     }
     
+    func getData(completion: @escaping ([String]?)->() ) {
+        let database = configureFirebase()
+        database.collection("data").document("posts").getDocument { document, error in
+            guard error == nil else {
+                completion(nil)
+                return
+            }
+            let posts: [String] = document?.get("posts") as! [String]
+                completion(posts)
+        }
+    }
+    
     func getContent(name: [String], completion: @escaping ([Post])->() ) {
         var posts: [Post] = []
         name.forEach { value in

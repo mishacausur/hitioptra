@@ -20,6 +20,8 @@ class FeedTableView: UIView {
     
     var tappedToProfile: ((Post)->())?
     
+    var refresh: (()->())?
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
@@ -37,10 +39,26 @@ class FeedTableView: UIView {
         self.users = users
         super.init(frame: frame)
         setupView()
+        configureRefreshControl()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.tintColor = UIColor.init(named: "DarkViolet")
+        tableView.refreshControl?.attributedTitle = NSAttributedString.init("Обновить")
+        tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    @objc private func handleRefreshControl() {
+        refresh?()
+        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.refreshControl?.endRefreshing()
+        }
     }
     
     private func setupView() {

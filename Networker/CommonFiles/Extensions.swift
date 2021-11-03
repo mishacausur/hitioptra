@@ -59,4 +59,22 @@ extension ViewController where Self: UIViewController {
     }
 }
 
-typealias Completion = (()->())?
+class ImageViewForPost: UIImageView {
+
+    override var intrinsicContentSize: CGSize {
+
+        if let image = self.image {
+            let width = image.size.width
+            let height = image.size.height
+            let viewWidth = self.frame.size.width
+
+            let newWidth = viewWidth/width
+            let newHeight = height * newWidth
+
+            return CGSize(width: viewWidth, height: newHeight)
+        }
+
+        return CGSize(width: -1.0, height: -1.0)
+    }
+
+}

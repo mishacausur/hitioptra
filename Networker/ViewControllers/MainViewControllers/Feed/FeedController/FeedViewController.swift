@@ -33,6 +33,9 @@ class FeedViewController: UIViewController, ViewController {
         view().toUser = { user in
             self.coordinator?.toUserProfile(profileID: user)
         }
+        view().refresh = {
+            self.viewModel.getContent()
+        }
         viewModel.getContent()
     }
     

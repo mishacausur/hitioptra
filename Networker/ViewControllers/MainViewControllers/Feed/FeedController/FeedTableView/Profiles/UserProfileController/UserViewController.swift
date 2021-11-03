@@ -35,6 +35,9 @@ class UserViewController: UIViewController, ViewController {
         view().disliked = { [self] (index, likes) in
             viewModel.unlike(index: index, likes: likes)
         }
+        view().refresh = {
+            self.viewModel.getProfile()
+        }
         viewModel.getProfile()
     }
     

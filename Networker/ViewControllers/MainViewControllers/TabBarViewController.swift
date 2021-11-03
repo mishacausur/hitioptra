@@ -12,10 +12,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
     var coordinator: AppCoordinator
     
-    var navController: UINavigationController
+    let navController = UINavigationController()
     
-    init(navController: UINavigationController, coordinator: AppCoordinator) {
-        self.navController = navController
+    init(coordinator: AppCoordinator) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }

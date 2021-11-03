@@ -18,6 +18,8 @@ class UserProfileView: UIView {
     
     var disliked: ((Int, Int)->())?
     
+    var refresh: (()->())?
+    
     private let scrollView = UIScrollView(frame: .zero)
     
     private let backButton: UIButton = {
@@ -108,6 +110,9 @@ class UserProfileView: UIView {
             }
             tableView.disliked = { [self] (index, likes) in
                 self.disliked?(index, likes)
+            }
+            tableView.refresh = {
+                self.refresh?()
             }
             return tableView
         }()

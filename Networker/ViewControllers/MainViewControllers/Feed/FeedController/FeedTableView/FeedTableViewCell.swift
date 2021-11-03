@@ -26,6 +26,14 @@ class FeedTableViewCell: UITableViewCell {
     var completion: (()->())?
     
     var tapped: (()->())?
+    
+    let topLine: UIView = {
+        let view = UIView()
+        view.alpha = 0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(named: "DarkViolet")
+        return view
+    }()
 
     let userImage: UIImageView = {
         let image = UIImageView()
@@ -75,7 +83,7 @@ class FeedTableViewCell: UITableViewCell {
     }()
     
     let postImage: UIImageView = {
-        let image = UIImageView()
+        let image = ImageViewForPost()
         image.contentMode = .scaleAspectFill
         image.layer.masksToBounds = true
         image.layer.cornerRadius = 4
@@ -127,7 +135,7 @@ class FeedTableViewCell: UITableViewCell {
     }
      
     private func setupCell() {
-        contentView.addSubviews(userImage, userName, userType, dateLabel, postTextLabel, postImage, footer)
+        contentView.addSubviews(topLine, userImage, userName, userType, dateLabel, postTextLabel, postImage, footer)
       
         contentView.backgroundColor = .white
         
@@ -143,6 +151,11 @@ class FeedTableViewCell: UITableViewCell {
         
         
         let constraints = [
+            topLine.topAnchor.constraint(equalTo: contentView.topAnchor),
+            topLine.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            topLine.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            topLine.heightAnchor.constraint(equalToConstant: 0.5),
+            
             userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
             userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 22),
             userImage.widthAnchor.constraint(equalToConstant: 80),
@@ -164,7 +177,7 @@ class FeedTableViewCell: UITableViewCell {
             postImage.topAnchor.constraint(equalTo: postTextLabel.bottomAnchor, constant: 12),
             postImage.leadingAnchor.constraint(equalTo: postTextLabel.leadingAnchor),
             postImage.trailingAnchor.constraint(equalTo: postTextLabel.trailingAnchor),
-            postImage.heightAnchor.constraint(equalToConstant: 200),
+            postImage.heightAnchor.constraint(equalToConstant: 250),
             
             footer.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 12),
             footer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
