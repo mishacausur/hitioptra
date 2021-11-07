@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import ViewAnimator
+import Lottie
 
 class FeedView: UIView {
     
@@ -52,18 +54,22 @@ class FeedView: UIView {
         return button
     }()
     
-    private let skeleton: SkeletonView = {
-        let view = SkeletonView()
-        view.isSkeletonable = true
+    let animationView: AnimationView = {
+        let view = AnimationView()
+        view.animation = Animation.named("75280-infinity-loader")
+        view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    let tableView = FeedTableView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor(named: "BackgroundViolet")
         configureViews()
-        skeleton.showAnimatedGradientSkeleton()
+        animationView.loopMode = .loop
+        animationView.play()
     }
     
     required init?(coder: NSCoder) {
@@ -71,8 +77,8 @@ class FeedView: UIView {
     }
     
     func configureTableView(posts: [Post], users: [UserProfile]) {
-        let tableView: FeedTableView = {
-            let tableView = FeedTableView(frame: .zero, posts: posts, users: users)
+        tableView.posts1 = posts
+        tableView.users = users
             tableView.liked = { [self] (index, likes) in
                 self.liked?(index, likes)
             }
@@ -87,26 +93,19 @@ class FeedView: UIView {
                 self.refresh?()
             }
             tableView.translatesAutoresizingMaskIntoConstraints = false
-            return tableView
-        }()
-        
-        scrollView.addSubview(tableView)
-        
-        let constraints = [
-            tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 46),
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ]
-        NSLayoutConstraint.activate(constraints)
+
+        let animation = AnimationType.from(direction: .top, offset: 1000)
+        UIView.animate(views: [tableView], animations: [animation], initialAlpha: 0, finalAlpha: 1, delay: 0.2, duration: 0.8) {
+            self.animationView.removeFromSuperview()
+        }
     }
-    
+        
     private func configureViews() {
         
-        self.addSubviews(searchButton, titleLabel, bellButton, skeleton, scrollView)
+        self.addSubviews(searchButton, titleLabel, bellButton, scrollView)
+        scrollView.addSubviews(animationView, tableView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.alpha = 0
-        
+        scrollView.alpha = 1
         let constraints = [
             
             searchButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
@@ -118,30 +117,22 @@ class FeedView: UIView {
             bellButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             bellButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -6),
             
-            skeleton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 46),
-            skeleton.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            skeleton.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            skeleton.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            
             scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 46),
             scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),]
+            scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        
+            animationView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            animationView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            animationView.widthAnchor.constraint(equalToConstant: 260),
+            animationView.heightAnchor.constraint(equalTo: animationView.widthAnchor),
+        
+            tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 46),
+            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)]
         
         NSLayoutConstraint.activate(constraints)
-    }
-    
-    func animatedAlpha() {
-        let generalViewAnimator = UIViewPropertyAnimator(duration: 0.9, curve: .linear) {
-            self.scrollView.alpha = 1
-        }
-        let skeletonAnimator = UIViewPropertyAnimator(duration: 0.4, curve: .linear) {
-            self.skeleton.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.6))
-            self.skeleton.removeFromSuperview()
-            generalViewAnimator.startAnimation()
-        }
-        skeletonAnimator.startAnimation()
-        
     }
     
     @objc private func signOut() {

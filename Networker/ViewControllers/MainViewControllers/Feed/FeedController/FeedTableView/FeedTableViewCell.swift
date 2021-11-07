@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Lottie
 
 class FeedTableViewCell: UITableViewCell {
     
@@ -133,10 +134,13 @@ class FeedTableViewCell: UITableViewCell {
             break
         }
     }
+  
+    @objc private func tappedToLike() {
+        completion?()
+    }
      
     private func setupCell() {
         contentView.addSubviews(topLine, userImage, userName, userType, dateLabel, postTextLabel, postImage, footer)
-      
         contentView.backgroundColor = .white
         
         footer.completion = {
@@ -148,7 +152,6 @@ class FeedTableViewCell: UITableViewCell {
 
         userImage.addGestureRecognizer(imageTappedRecognizer)
         userName.addGestureRecognizer(nameTappedRecognizer)
-        
         
         let constraints = [
             topLine.topAnchor.constraint(equalTo: contentView.topAnchor),

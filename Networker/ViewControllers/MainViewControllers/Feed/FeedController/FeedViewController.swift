@@ -59,6 +59,6 @@ extension FeedViewController: FeedViewInput {
     }
     
     func animatedAlpha() {
-        view().animatedAlpha()
+        
     }
 }

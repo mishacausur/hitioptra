@@ -7,12 +7,13 @@
 
 import Foundation
 import UIKit
-//import SkeletonView
+import ViewAnimator
 
 class FeedTableView: UIView {
     
-    var posts: [Post]
-    var users: [UserProfile]
+    var posts1: [Post]?
+    
+    var users: [UserProfile]?
     
     var liked: ((Int, Int)->())?
     
@@ -34,11 +35,10 @@ class FeedTableView: UIView {
         return tableView
     }()
     
-    init(frame: CGRect, posts: [Post], users: [UserProfile]) {
-        self.posts = posts.sorted(by: { $0.date > $1.date })
-        self.users = users
+    override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        animator()
         configureRefreshControl()
     }
     
@@ -54,11 +54,17 @@ class FeedTableView: UIView {
     }
     
     @objc private func handleRefreshControl() {
+//        posts.removeAll()
         refresh?()
         tableView.reloadData()
         DispatchQueue.main.async {
             self.tableView.refreshControl?.endRefreshing()
         }
+    }
+    
+    func animator() {
+        let animation = AnimationType.from(direction: .top, offset: 500)
+        UIView.animate(views: tableView.visibleCells, animations: [animation], initialAlpha: 0, finalAlpha: 1, delay: 0.2, duration: 0.4)
     }
     
     private func setupView() {
@@ -72,28 +78,31 @@ class FeedTableView: UIView {
 }
 
 extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
-    
+  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let posts = posts1 else { return 0 }
         return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FeedTableViewCell
+        guard var posts = posts1 else { return UITableViewCell() }
+        posts = posts.sorted(by: { $0.date > $1.date })
         cell.configureCellWithData(post: posts[indexPath.row])
         
         var isLiked = posts[indexPath.row].isLiked {
             didSet {
                 DispatchQueue.main.async {
-                    cell.footer.likeIcon.setImage(self.posts[indexPath.row].isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
-                    if self.posts[indexPath.row].isLiked == false {
-                        self.posts[indexPath.row].likes -= 1
-                        cell.footer.likeLabel.text = "\(self.posts[indexPath.row].likes)"
-                        self.disliked?(self.posts[indexPath.row].id, self.posts[indexPath.row].likes)
+                    cell.footer.likeIcon.setImage(posts[indexPath.row].isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+                    if posts[indexPath.row].isLiked == false {
+                        posts[indexPath.row].likes -= 1
+                        cell.footer.likeLabel.text = "\(posts[indexPath.row].likes)"
+                        self.disliked?(posts[indexPath.row].id, posts[indexPath.row].likes)
                     } else {
-                        self.posts[indexPath.row].likes += 1
-                        cell.footer.likeLabel.text = "\(self.posts[indexPath.row].likes)"
-                        self.liked?(self.posts[indexPath.row].id, self.posts[indexPath.row].likes)
+                        posts[indexPath.row].likes += 1
+                        cell.footer.likeLabel.text = "\(posts[indexPath.row].likes)"
+                        self.liked?(posts[indexPath.row].id, posts[indexPath.row].likes)
                     }
                 }
             }
@@ -101,11 +110,11 @@ extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
         
         cell.completion = {
             isLiked.toggle()
-            self.posts[indexPath.row].isLiked.toggle()
+            posts[indexPath.row].isLiked.toggle()
         }
         
         cell.tapped = {
-            self.tappedToProfile?(self.posts[indexPath.row])
+            self.tappedToProfile?(posts[indexPath.row])
         }
         
         return cell

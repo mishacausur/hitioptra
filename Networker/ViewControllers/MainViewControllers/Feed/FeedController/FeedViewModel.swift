@@ -29,7 +29,7 @@ class FeedViewModel: FeedViewOutput {
     
     var coordinator: AppCoordinator?
     
-    var posts: [Post]? = []
+    var posts: [Post]?
     
     var users: [UserProfile]?
     
@@ -38,9 +38,11 @@ class FeedViewModel: FeedViewOutput {
             guard let post = pos else { return }
             APIManager.shared.getContent(name: post) { posts in
                 DispatchQueue.main.async {
-                    guard let view = viewInput else { return }
-                    view.configureTableView(posts: posts)
-                    view.animatedAlpha()
+                    guard viewInput != nil else { return }
+                    if posts.count == pos?.count {
+                        viewInput?.configureTableView(posts: posts)
+                    }
+                   
                 }
             }
         }

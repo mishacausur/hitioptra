@@ -7,6 +7,7 @@
 
 import UIKit
 import Lottie
+import ViewAnimator
 
 class UserProfileView: UIView {
     
@@ -122,6 +123,12 @@ class UserProfileView: UIView {
          tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
          tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
          tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)].forEach { $0.isActive = true }
+        
+        
+        let animation = AnimationType.from(direction: .top, offset: 1000)
+        UIView.animate(views: [tableView], animations: [animation], initialAlpha: 0, finalAlpha: 1, delay: 0.2, duration: 0.4) {
+            self.animationView.removeFromSuperview()
+        }
     }
     
     func animatedAlpha() {

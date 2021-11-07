@@ -18,7 +18,7 @@ class HistoryCollectionView: UIView {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.showsHorizontalScrollIndicator = false
-        collection.alpha = 0
+//        collection.alpha = 0
         collection.delegate = self
         collection.dataSource = self
         

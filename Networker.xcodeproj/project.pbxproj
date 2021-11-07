@@ -40,7 +40,6 @@
 		B6B647CB272C410200DA93D1 /* FeedTableViewCellFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647CA272C410200DA93D1 /* FeedTableViewCellFooterView.swift */; };
 		B6B647CE272C7CAC00DA93D1 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647CD272C7CAC00DA93D1 /* UserViewController.swift */; };
 		B6B647D0272C7CDF00DA93D1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647CF272C7CDF00DA93D1 /* UserViewModel.swift */; };
-		B6B647D2272D101900DA93D1 /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647D1272D101900DA93D1 /* SkeletonView.swift */; };
 		B6B647D4272D3ABC00DA93D1 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647D3272D3ABC00DA93D1 /* ProfileData.swift */; };
 		B6B647D7272D4BBD00DA93D1 /* UserTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647D6272D4BBD00DA93D1 /* UserTableView.swift */; };
 		B6B647D9272D4F5E00DA93D1 /* HeaderUserProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B647D8272D4F5E00DA93D1 /* HeaderUserProfileTableViewCell.swift */; };
@@ -99,7 +98,6 @@
 		B6B647CA272C410200DA93D1 /* FeedTableViewCellFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCellFooterView.swift; sourceTree = "<group>"; };
 		B6B647CD272C7CAC00DA93D1 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		B6B647CF272C7CDF00DA93D1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
-		B6B647D1272D101900DA93D1 /* SkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonView.swift; sourceTree = "<group>"; };
 		B6B647D3272D3ABC00DA93D1 /* ProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
 		B6B647D6272D4BBD00DA93D1 /* UserTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableView.swift; sourceTree = "<group>"; };
 		B6B647D8272D4F5E00DA93D1 /* HeaderUserProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderUserProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 				B6B647CC272C7B9D00DA93D1 /* Profiles */,
 				B638003C2722C1A80082AF30 /* FeedTableView.swift */,
 				B638003E2722C1B40082AF30 /* FeedTableViewCell.swift */,
-				B6B647D1272D101900DA93D1 /* SkeletonView.swift */,
 				B6B647CA272C410200DA93D1 /* FeedTableViewCellFooterView.swift */,
 				B63800442725A28A0082AF30 /* FeedHeaderView.swift */,
 			);
@@ -578,7 +575,6 @@
 				B63456C3271DB87200C15085 /* ConfirmationViewModel.swift in Sources */,
 				B6CDFE7D271B1900001AFBB2 /* AppCoordinator.swift in Sources */,
 				B62E6561271B3F79008F62AE /* Extensions.swift in Sources */,
-				B6B647D2272D101900DA93D1 /* SkeletonView.swift in Sources */,
 				B6B647F5272EE90F00DA93D1 /* UserProfileView.swift in Sources */,
 				B638003F2722C1B40082AF30 /* FeedTableViewCell.swift in Sources */,
 				B63456D5271DC56000C15085 /* TabBarViewController.swift in Sources */,
