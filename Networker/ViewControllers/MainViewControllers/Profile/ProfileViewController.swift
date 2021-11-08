@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, Coordinating {
 
-    var coordinator: AppCoordinator?
+    var coordinator: Coordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()

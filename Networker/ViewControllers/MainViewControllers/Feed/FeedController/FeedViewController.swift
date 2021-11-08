@@ -8,11 +8,11 @@
 import UIKit
 import FirebaseDatabase
 
-class FeedViewController: UIViewController, ViewController {
+class FeedViewController: UIViewController, ViewController, Coordinating {
     
     typealias RootView = FeedView
     
-    var coordinator: AppCoordinator?
+    var coordinator: Coordinator?
     
     var viewModel: FeedViewOutput
     
@@ -31,7 +31,7 @@ class FeedViewController: UIViewController, ViewController {
             self.viewModel.signOut()
         }
         view().toUser = { user in
-            self.coordinator?.toUserProfile(profileID: user)
+            self.coordinator?.eventOccurred(with: .toUser, with: user)
         }
         view().refresh = {
             self.viewModel.getContent()
@@ -50,10 +50,10 @@ extension FeedViewController: FeedViewInput {
     func configureTableView(posts: [Post]) {
         guard let users = viewModel.users else { return }
         view().configureTableView(posts: posts, users: users)
-        view().liked = { [self] (index, likes) in
+        view().liked = { [unowned self] (index, likes) in
             viewModel.like(index: index, likes: likes)
         }
-        view().disliked = { [self] (index, likes) in
+        view().disliked = { [unowned self] (index, likes) in
             viewModel.unlike(index: index, likes: likes)
         }
     }

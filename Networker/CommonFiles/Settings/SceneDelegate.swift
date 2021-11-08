@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    var coodinator: AppCoordinator?
+    var coordinator: Coordinator?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -21,15 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         let navController = UINavigationController()
         navController.navigationBar.isHidden = true
-        coodinator = AppCoordinator(navigationViewController: navController)
+        coordinator = AppCoordinator(navigationViewController: navController)
         window.rootViewController = navController
         self.window = window
         window.makeKeyAndVisible()
         
         if Auth.auth().currentUser == nil {
-            coodinator?.startWithAuth()
+            coordinator?.eventOccurred(with: .start, with: nil)
         } else {
-            coodinator?.startCurrentUserLoggedIn()
+            coordinator?.eventOccurred(with: .authorized, with: nil)
         }
         
         func sceneDidDisconnect(_ scene: UIScene) {

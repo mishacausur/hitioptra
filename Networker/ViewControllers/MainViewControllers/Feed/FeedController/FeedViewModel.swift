@@ -27,7 +27,7 @@ class FeedViewModel: FeedViewOutput {
     
     weak var viewInput: FeedViewInput?
     
-    var coordinator: AppCoordinator?
+    var coordinator: Coordinator?
     
     var posts: [Post]?
     
@@ -65,6 +65,6 @@ class FeedViewModel: FeedViewOutput {
         catch let error {
             print(error)
         }
-        coordinator?.startWithAuth()
+        coordinator?.eventOccurred(with: .start, with: nil)
     }
 }

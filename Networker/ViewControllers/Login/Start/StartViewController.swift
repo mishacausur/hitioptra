@@ -7,16 +7,16 @@
 
 import UIKit
 
-class StartViewController: UIViewController, ViewController {
+class StartViewController: UIViewController, ViewController, Coordinating {
     
     typealias RootView = StartView
 
-    var coordinator: AppCoordinator?
+    var coordinator: Coordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view().nextButtonTappedCompletion = {
-            self.coordinator?.startCurrentUserLoggedIn()
+            self.coordinator?.eventOccurred(with: .authorized, with: nil)
         }
     }
     

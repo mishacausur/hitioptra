@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
+class TabBarViewController: UITabBarController, UITabBarControllerDelegate, Coordinating {
     
-    var coordinator: AppCoordinator
+    var coordinator: Coordinator?
     
     let navController = UINavigationController()
     

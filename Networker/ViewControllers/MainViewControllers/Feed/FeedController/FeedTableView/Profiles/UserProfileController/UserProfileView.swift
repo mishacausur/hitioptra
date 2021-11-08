@@ -125,7 +125,7 @@ class UserProfileView: UIView {
          tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)].forEach { $0.isActive = true }
         
         
-        let animation = AnimationType.from(direction: .top, offset: 1000)
+        let animation = AnimationType.from(direction: .right, offset: 1000)
         UIView.animate(views: [tableView], animations: [animation], initialAlpha: 0, finalAlpha: 1, delay: 0.2, duration: 0.4) {
             self.animationView.removeFromSuperview()
         }

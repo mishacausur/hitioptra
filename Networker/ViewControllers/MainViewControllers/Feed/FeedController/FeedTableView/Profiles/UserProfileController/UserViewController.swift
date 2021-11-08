@@ -27,7 +27,7 @@ class UserViewController: UIViewController, ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view().backButtonTappedCompletion = {
-            self.coordinator?.dismiss()
+            self.coordinator?.eventOccurred(with: .dismiss, with: nil)
         }
         view().liked = { [self] (index, likes) in
             viewModel.like(index: index, likes: likes)

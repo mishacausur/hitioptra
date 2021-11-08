@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class SignInViewController: UIViewController, ViewController {
+final class SignInViewController: UIViewController, ViewController, Coordinating {
 
     typealias RootView = SignInView
     
-    var coordinator: AppCoordinator?
+    var coordinator: Coordinator?
     
     var viewModel: SignInViewOutput
     
@@ -27,7 +27,7 @@ final class SignInViewController: UIViewController, ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view().backButtonTappedCompletion = {
-            self.coordinator?.dismiss()
+            self.coordinator?.eventOccurred(with: .dismiss, with: nil)
         }
         view().confirmNumberCompletion = { [self] text in
             confirmation(text: text)
@@ -42,7 +42,7 @@ final class SignInViewController: UIViewController, ViewController {
     private func confirmation(text: String) {
         viewModel.auth(phone: text) { value in
             guard value else { return }
-            self.coordinator?.confirmation(phoneNumber: text)
+            self.coordinator?.eventOccurred(with: .toConfirm, with: text)
         }
     }
 }

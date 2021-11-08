@@ -76,5 +76,4 @@ class ImageViewForPost: UIImageView {
 
         return CGSize(width: -1.0, height: -1.0)
     }
-
 }

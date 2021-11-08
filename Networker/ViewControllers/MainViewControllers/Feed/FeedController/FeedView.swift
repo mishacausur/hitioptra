@@ -79,27 +79,25 @@ class FeedView: UIView {
     func configureTableView(posts: [Post], users: [UserProfile]) {
         tableView.posts1 = posts
         tableView.users = users
-            tableView.liked = { [self] (index, likes) in
-                self.liked?(index, likes)
-            }
-            tableView.disliked = { [self] (index, likes) in
-                self.disliked?(index, likes)
-                
-            }
-            tableView.tappedToProfile = { [self] post in
-                self.toUser?(post.author)
-            }
-            tableView.refresh = {
-                self.refresh?()
-            }
-            tableView.translatesAutoresizingMaskIntoConstraints = false
-
-        let animation = AnimationType.from(direction: .top, offset: 1000)
-        UIView.animate(views: [tableView], animations: [animation], initialAlpha: 0, finalAlpha: 1, delay: 0.2, duration: 0.8) {
-            self.animationView.removeFromSuperview()
+        tableView.liked = { [self] (index, likes) in
+            self.liked?(index, likes)
         }
-    }
+        tableView.disliked = { [self] (index, likes) in
+            self.disliked?(index, likes)
+            
+        }
+        tableView.tappedToProfile = { [self] post in
+            self.toUser?(post.author)
+        }
+        tableView.refresh = {
+            self.refresh?()
+        }
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
+        animationView.removeFromSuperview()
+        
+    }
+    
     private func configureViews() {
         
         self.addSubviews(searchButton, titleLabel, bellButton, scrollView)

@@ -7,10 +7,11 @@
 
 import UIKit
 
-final class LoginViewController: UIViewController, ViewController {
+final class LoginViewController: UIViewController, ViewController, Coordinating {
     
     typealias RootView = LoginView
-    var coordinator: AppCoordinator?
+    
+    var coordinator: Coordinator?
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -21,7 +22,7 @@ final class LoginViewController: UIViewController, ViewController {
         view().animation()
         super.viewDidLoad()
         view().completion = {
-            self.coordinator?.signIn()
+            self.coordinator?.eventOccurred(with: .toRegistration, with: nil)
         }
     }
 

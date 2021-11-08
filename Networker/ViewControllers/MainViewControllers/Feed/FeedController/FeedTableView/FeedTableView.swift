@@ -38,7 +38,6 @@ class FeedTableView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        animator()
         configureRefreshControl()
     }
     
@@ -54,7 +53,7 @@ class FeedTableView: UIView {
     }
     
     @objc private func handleRefreshControl() {
-//        posts.removeAll()
+//        posts1?.removeAll()
         refresh?()
         tableView.reloadData()
         DispatchQueue.main.async {
@@ -63,8 +62,8 @@ class FeedTableView: UIView {
     }
     
     func animator() {
-        let animation = AnimationType.from(direction: .top, offset: 500)
-        UIView.animate(views: tableView.visibleCells, animations: [animation], initialAlpha: 0, finalAlpha: 1, delay: 0.2, duration: 0.4)
+        let animation = AnimationType.from(direction: .right, offset: 800)
+        UIView.animate(views: self.tableView.visibleCells, animations: [animation], delay: 0.2, duration: 0.9)
     }
     
     private func setupView() {
@@ -81,6 +80,7 @@ extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let posts = posts1 else { return 0 }
+        animator()
         return posts.count
     }
     
@@ -116,7 +116,6 @@ extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
         cell.tapped = {
             self.tappedToProfile?(posts[indexPath.row])
         }
-        
         return cell
     }
     

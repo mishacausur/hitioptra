@@ -7,11 +7,11 @@
 
 import UIKit
 
-class FavoriteViewController: UIViewController, ViewController {
+class FavoriteViewController: UIViewController, ViewController, Coordinating {
   
     typealias RootView = FavortiteView
     
-    var coordinator: AppCoordinator?
+    var coordinator: Coordinator?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
