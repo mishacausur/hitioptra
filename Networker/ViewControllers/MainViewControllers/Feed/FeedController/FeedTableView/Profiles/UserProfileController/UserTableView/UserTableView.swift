@@ -7,12 +7,13 @@
 
 import Foundation
 import UIKit
+import ViewAnimator
 
 class UserTableView: UIView {
     
-    var profile: ProfileData
+    var user: ProfileData?
     
-    var posts: [Post]
+    var posts1: [Post]?
     
     var liked: ((Int, Int)->())?
     
@@ -34,9 +35,7 @@ class UserTableView: UIView {
         return tableView
     }()
     
-    init(frame: CGRect, profile: ProfileData, posts: [Post]) {
-        self.profile = profile
-        self.posts = posts.sorted(by: { $0.date > $1.date })
+    override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
         configureRefreshControl()
@@ -72,15 +71,24 @@ class UserTableView: UIView {
         
         NSLayoutConstraint.activate(constraints)
     }
+    
+    func animator() {
+        let animation = AnimationType.from(direction: .right, offset: 800)
+        UIView.animate(views: tableView.visibleCells, animations: [animation], initialAlpha: 1, finalAlpha: 1, delay: 0.2, duration: 0.9)
+    }
+    
 }
 
 
 extension UserTableView: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+        guard let posts = posts1 else { return 0 }
         if section == 0 {
             return 3
         }
@@ -91,6 +99,8 @@ extension UserTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let posts = posts1 else { return nil }
+
         if section == 1 {
             let header = UserProfileHeaderForSectionView()
             header.configure(count: posts.count)
@@ -107,6 +117,9 @@ extension UserTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        guard var posts = posts1, let profile = user else { return UITableViewCell() }
+        posts = posts.sorted(by: { $0.date > $1.date })
         if (indexPath.section == 0) {
             if indexPath.row == 0 {
                 let cell: HeaderUserProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Header", for: indexPath) as! HeaderUserProfileTableViewCell
@@ -134,22 +147,22 @@ extension UserTableView: UITableViewDelegate, UITableViewDataSource {
             var isLiked = posts[indexPath.row].isLiked {
                 didSet {
                     DispatchQueue.main.async {
-                        cell.footer.likeIcon.setImage(self.posts[indexPath.row].isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
-                        if self.posts[indexPath.row].isLiked == false {
-                            self.posts[indexPath.row].likes -= 1
-                            cell.footer.likeLabel.text = "\(self.posts[indexPath.row].likes)"
-                            self.disliked?(self.posts[indexPath.row].id, self.posts[indexPath.row].likes)
+                        cell.footer.likeIcon.setImage(posts[indexPath.row].isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+                        if posts[indexPath.row].isLiked == false {
+                            posts[indexPath.row].likes -= 1
+                            cell.footer.likeLabel.text = "\(posts[indexPath.row].likes)"
+                            self.disliked?(posts[indexPath.row].id, posts[indexPath.row].likes)
                         } else {
-                            self.posts[indexPath.row].likes += 1
-                            cell.footer.likeLabel.text = "\(self.posts[indexPath.row].likes)"
-                            self.liked?(self.posts[indexPath.row].id, self.posts[indexPath.row].likes)
+                            posts[indexPath.row].likes += 1
+                            cell.footer.likeLabel.text = "\(posts[indexPath.row].likes)"
+                            self.liked?(posts[indexPath.row].id, posts[indexPath.row].likes)
                         }
                     }
                 }
             }
             cell.completion = {
                 isLiked.toggle()
-                self.posts[indexPath.row].isLiked.toggle()
+                posts[indexPath.row].isLiked.toggle()
             }
             return cell
         }

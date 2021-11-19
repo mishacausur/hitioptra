@@ -50,6 +50,8 @@ class UserProfileView: UIView {
         return view
     }()
     
+    let tableView = UserTableView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureViews()
@@ -94,41 +96,31 @@ class UserProfileView: UIView {
     }
     
     func configureViewWithData(profile: ProfileData, posts: [Post]) {
-        DispatchQueue.main.async {
-            self.userName.text = "networker/\(profile.name.lowercased())"
-            self.setupProfileTableView(profile: profile, posts: posts)
-            self.animatedAlpha()
-        }
-        
+            userName.text = "networker/\(profile.name.lowercased())"
+            setupProfileTableView(profile: profile, posts: posts)
+            animatedAlpha()
     }
     
+
     private func setupProfileTableView(profile: ProfileData, posts: [Post]) {
-        let tableView: UserTableView = {
-            let tableView = UserTableView(frame: .zero, profile: profile, posts: posts)
-            tableView.translatesAutoresizingMaskIntoConstraints = false
-            tableView.liked = { [self] (index, likes) in
-                self.liked?(index, likes)
-            }
-            tableView.disliked = { [self] (index, likes) in
-                self.disliked?(index, likes)
-            }
-            tableView.refresh = {
-                self.refresh?()
-            }
-            return tableView
-        }()
-        
+        tableView.posts1 = posts
+        tableView.user = profile
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.liked = { [self] (index, likes) in
+            self.liked?(index, likes)
+        }
+        tableView.disliked = { [self] (index, likes) in
+            self.disliked?(index, likes)
+        }
+        tableView.refresh = {
+            self.refresh?()
+        }
+    
         backView.addSubview(tableView)
         [tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 46),
          tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
          tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
          tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)].forEach { $0.isActive = true }
-        
-        
-        let animation = AnimationType.from(direction: .right, offset: 1000)
-        UIView.animate(views: [tableView], animations: [animation], initialAlpha: 0, finalAlpha: 1, delay: 0.2, duration: 0.4) {
-            self.animationView.removeFromSuperview()
-        }
     }
     
     func animatedAlpha() {

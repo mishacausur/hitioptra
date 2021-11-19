@@ -24,7 +24,7 @@ class FeedViewController: UIViewController, ViewController, Coordinating {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view().signOutTapped = {
@@ -49,6 +49,7 @@ extension FeedViewController: FeedViewInput {
     
     func configureTableView(posts: [Post]) {
         guard let users = viewModel.users else { return }
+        view().animator()
         view().configureTableView(posts: posts, users: users)
         view().liked = { [unowned self] (index, likes) in
             viewModel.like(index: index, likes: likes)

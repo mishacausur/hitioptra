@@ -54,7 +54,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, Coor
         feedVC.coordinator = coordinator
         feedViewModel.coordinator = coordinator
         
-        let profileVC = ProfileViewController()
+        let viewModel = ProfileViewModel()
+        let profileVC = ProfileViewController(viewModel: viewModel)
+        viewModel.viewInput = profileVC
         let profileNavVC = configureViewControllers(viewController: profileVC, title: "Профиль", imageName: "person.circle.fill")
         profileVC.coordinator = coordinator
     

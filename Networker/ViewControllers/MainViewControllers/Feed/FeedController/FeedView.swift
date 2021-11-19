@@ -93,17 +93,21 @@ class FeedView: UIView {
             self.refresh?()
         }
         tableView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func animator() {
         
-        animationView.removeFromSuperview()
-        
+        let animation = AnimationType.from(direction: .right, offset: 800)
+        UIView.animate(views: [self.tableView], animations: [animation], delay: 0, duration: 0.9)
+        self.animationView.removeFromSuperview()
     }
     
     private func configureViews() {
         
         self.addSubviews(searchButton, titleLabel, bellButton, scrollView)
         scrollView.addSubviews(animationView, tableView)
+        tableView.alpha = 0
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.alpha = 1
         let constraints = [
             
             searchButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),

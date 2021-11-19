@@ -52,7 +52,6 @@ class HeaderUserProfileTableViewCell: UITableViewCell {
         button.setImage(UIImage.init(systemName: "info.circle.fill"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = UIColor(named: "DarkViolet")
-//        button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
         return button
     }()
     
@@ -67,7 +66,6 @@ class HeaderUserProfileTableViewCell: UITableViewCell {
 
     let messageButton: UIButton = {
         let button = UIButton()
-//        button.addTarget(self, action: #selector(signIn), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .bordered()
         var attributedString = AttributedString.init(stringLiteral: "Написать сообщение")
@@ -86,6 +84,16 @@ class HeaderUserProfileTableViewCell: UITableViewCell {
  
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureProfile(profile: ProfileData) {
+        userName.text = profile.name
+        userType.text = profile.type
+        userImage.image = UIImage(named: "Mishutto")
+        let attributedString = AttributedString.init(stringLiteral: "Редактировать профиль")
+        messageButton.configuration?.attributedTitle = attributedString
+        messageButton.configuration?.baseBackgroundColor = UIColor(named: "profileButton")
+        messageButton.configuration?.baseForegroundColor = .white
     }
     
     func configureCellWithData(profile: ProfileData) {
@@ -108,7 +116,6 @@ class HeaderUserProfileTableViewCell: UITableViewCell {
     
     private func setupCell() {
         contentView.addSubviews(topLine, userImage, userName, userType, moreIcon, moreLabel, messageButton, bottomLine)
-//        contentView.backgroundColor = UIColor.init(named: "BackgroundViolet")
         let constraints = [
             topLine.topAnchor.constraint(equalTo: contentView.topAnchor),
             topLine.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),

@@ -87,8 +87,6 @@ class APIManager {
         }
     }
     
-    
-    
     func getProfile(profileID: String, completion: @escaping (ProfileData?)->() ) {
         let database = configureFirebase()
         database.collection("authors").document(profileID).getDocument { document, error in

@@ -17,4 +17,6 @@ struct ProfileData {
     let followings: Int
     let photos: Int
     let posts: [String]
+    
+    static let mishutto = ProfileData(name: "Mishutto", type: "Частное лицо", postsCount: 0, followers: 27, followings: 36, photos: 8, posts: [])
 }

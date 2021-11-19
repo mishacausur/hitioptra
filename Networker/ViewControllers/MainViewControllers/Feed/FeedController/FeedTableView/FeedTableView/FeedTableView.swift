@@ -53,17 +53,16 @@ class FeedTableView: UIView {
     }
     
     @objc private func handleRefreshControl() {
-//        posts1?.removeAll()
-        refresh?()
-        tableView.reloadData()
         DispatchQueue.main.async {
+            self.refresh?()
+            self.tableView.reloadData()
             self.tableView.refreshControl?.endRefreshing()
         }
     }
     
     func animator() {
         let animation = AnimationType.from(direction: .right, offset: 800)
-        UIView.animate(views: self.tableView.visibleCells, animations: [animation], delay: 0.2, duration: 0.9)
+        UIView.animate(views: self.tableView.visibleCells, animations: [animation], delay: 0, duration: 0.9)
     }
     
     private func setupView() {
@@ -126,6 +125,8 @@ extension FeedTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = FeedHeaderView()
         header.users = users
+        let animation = AnimationType.from(direction: .right, offset: 800)
+        UIView.animate(views: [header], animations: [animation], initialAlpha: 0, finalAlpha: 1, delay: 0.2, duration: 0.9)
         return header
     }
 }
