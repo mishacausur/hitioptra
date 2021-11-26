@@ -15,8 +15,8 @@ class StartView: UIView {
     private let confirmationLabel: UILabel = {
         let label = UILabel()
         label.text = "Вы успешно зарегистрировались"
-        label.font = UIFont(name: "VenrynSans-SemiBold", size: 28)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.semibold, 28)
+        label.textColor = Color.setColor(.darkViolet)
         label.numberOfLines = 0
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -26,8 +26,8 @@ class StartView: UIView {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.text = "Нажмите “Далее“ для того, чтобы закончить регистрацию и перейти в сервис"
-        label.font = UIFont(name: "VenrynSans-Light", size: 14)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.light, 14)
+        label.textColor = Color.setColor(.darkViolet)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,10 +48,10 @@ class StartView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .bordered()
         var attributedString = AttributedString.init(stringLiteral: "Далее")
-        attributedString.font = UIFont(name: "VenrynSans-Regular", size: 24)
+        attributedString.font = Font.setFont(.regular, 24)
         button.configuration?.attributedTitle = attributedString
         button.configuration?.buttonSize = .medium
-        button.configuration?.baseBackgroundColor = UIColor(named: "DarkViolet")
+        button.configuration?.baseBackgroundColor = Color.setColor(.darkViolet)
         button.configuration?.baseForegroundColor = .white
         return button
     }()

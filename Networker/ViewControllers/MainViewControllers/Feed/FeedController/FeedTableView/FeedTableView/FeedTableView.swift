@@ -27,8 +27,6 @@ class FeedTableView: UIView {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorColor = UIColor.init(named: "DarkViolet")
-        tableView.separatorColor = UIColor(named: "Accent Blue")
         tableView.separatorStyle = .singleLine
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -47,7 +45,7 @@ class FeedTableView: UIView {
     
     private func configureRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.tintColor = UIColor.init(named: "DarkViolet")
+        tableView.refreshControl?.tintColor = Color.setColor(.darkViolet)
         tableView.refreshControl?.attributedTitle = NSAttributedString.init("Обновить")
         tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
     }

@@ -44,9 +44,9 @@ class UserViewModel: UserViewOutput {
         APIManager.shared.getProfile(profileID: author) { profile in
             guard let profile = profile else { return }
             
-            APIManager.shared.getContent(name: profile.posts) { posts in
+            APIManager.shared.getContent(name: profile.posts) { [weak self] posts in
                 if posts.count == profile.posts.count {
-                    self.viewInput?.configureViewWithData(profile: profile, posts: posts)
+                    self?.viewInput?.configureViewWithData(profile: profile, posts: posts)
                     
                 }
             }

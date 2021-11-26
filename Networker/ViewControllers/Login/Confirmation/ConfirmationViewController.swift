@@ -19,11 +19,11 @@ class ConfirmationViewController: UIViewController, ViewController, Coordinating
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view().confirmCodeCompletion = { text in
-            self.checkCode(text: text)
+        view().confirmCodeCompletion = { [weak self] text in
+            self?.checkCode(text: text)
         }
-        view().backButtonTappedCompletion = {
-            self.coordinator?.eventOccurred(with: .dismiss, with: nil)
+        view().backButtonTappedCompletion = { [weak self] in
+            self?.coordinator?.eventOccurred(with: .dismiss, with: nil)
         }
     }
     
@@ -44,12 +44,12 @@ class ConfirmationViewController: UIViewController, ViewController, Coordinating
     
     private func checkCode(text: String) {
         
-        viewModel.verify(code: text) { value in
+        viewModel.verify(code: text) { [weak self] value in
             guard value else {
-                self.invalidCode()
+                self?.invalidCode()
                 return
             }
-            self.coordinator?.eventOccurred(with: .toSuccess, with: nil)
+            self?.coordinator?.eventOccurred(with: .toSuccess, with: nil)
         }
     }
 

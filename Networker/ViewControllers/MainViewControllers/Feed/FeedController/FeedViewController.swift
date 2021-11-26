@@ -24,6 +24,17 @@ class FeedViewController: UIViewController, ViewController, Coordinating {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        guard transitionCoordinator != nil else { return }
+//        transitionCoordinator?.animate(alongsideTransition: { [weak self] context in
+//            print("-------------------------------------------------------")
+//            print(context.transitionDuration)
+//        }, completion: { context in
+//
+//        })
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,11 +62,11 @@ extension FeedViewController: FeedViewInput {
         guard let users = viewModel.users else { return }
         view().animator()
         view().configureTableView(posts: posts, users: users)
-        view().liked = { [unowned self] (index, likes) in
-            viewModel.like(index: index, likes: likes)
+        view().liked = { [weak self] (index, likes) in
+            self?.viewModel.like(index: index, likes: likes)
         }
-        view().disliked = { [unowned self] (index, likes) in
-            viewModel.unlike(index: index, likes: likes)
+        view().disliked = { [weak self] (index, likes) in
+            self?.viewModel.unlike(index: index, likes: likes)
         }
     }
     

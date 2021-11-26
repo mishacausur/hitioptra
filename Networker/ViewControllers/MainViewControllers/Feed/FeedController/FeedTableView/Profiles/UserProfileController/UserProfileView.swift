@@ -29,15 +29,15 @@ class UserProfileView: UIView {
         button.configuration = .plain()
         button.configuration?.buttonSize = .large
         button.configuration?.image = UIImage(systemName: "arrow.backward")
-        button.configuration?.baseForegroundColor = UIColor(named: "DarkViolet")
+        button.configuration?.baseForegroundColor = Color.setColor(.darkViolet)
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         return button
     }()
     
     let userName: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "VenrynSans-Regular", size: 16)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.regular, 16)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -57,7 +57,7 @@ class UserProfileView: UIView {
         configureViews()
         animationView.loopMode = .loop
         animationView.play()
-        self.backgroundColor = UIColor(named: "BackgroundViolet")
+        self.backgroundColor = Color.setColor(.background)
         
     }
     
@@ -106,14 +106,14 @@ class UserProfileView: UIView {
         tableView.posts1 = posts
         tableView.user = profile
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.liked = { [self] (index, likes) in
-            self.liked?(index, likes)
+        tableView.liked = { [weak self] (index, likes) in
+            self?.liked?(index, likes)
         }
-        tableView.disliked = { [self] (index, likes) in
-            self.disliked?(index, likes)
+        tableView.disliked = { [weak self] (index, likes) in
+            self?.disliked?(index, likes)
         }
-        tableView.refresh = {
-            self.refresh?()
+        tableView.refresh = { [weak self] in
+            self?.refresh?()
         }
     
         backView.addSubview(tableView)

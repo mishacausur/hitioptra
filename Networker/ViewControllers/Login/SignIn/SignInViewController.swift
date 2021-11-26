@@ -29,8 +29,8 @@ final class SignInViewController: UIViewController, ViewController, Coordinating
         view().backButtonTappedCompletion = {
             self.coordinator?.eventOccurred(with: .dismiss, with: nil)
         }
-        view().confirmNumberCompletion = { [self] text in
-            confirmation(text: text)
+        view().confirmNumberCompletion = { [weak self] text in
+            self?.confirmation(text: text)
         }
     }
     
@@ -40,9 +40,9 @@ final class SignInViewController: UIViewController, ViewController, Coordinating
     }
 
     private func confirmation(text: String) {
-        viewModel.auth(phone: text) { value in
+        viewModel.auth(phone: text) { [weak self] value in
             guard value else { return }
-            self.coordinator?.eventOccurred(with: .toConfirm, with: text)
+            self?.coordinator?.eventOccurred(with: .toConfirm, with: text)
         }
     }
 }

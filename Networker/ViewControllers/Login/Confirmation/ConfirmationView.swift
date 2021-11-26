@@ -21,7 +21,7 @@ class ConfirmationView: UIView {
         button.configuration = .plain()
         button.configuration?.buttonSize = .large
         button.configuration?.image = UIImage(systemName: "arrow.backward")
-        button.configuration?.baseForegroundColor = UIColor(named: "DarkViolet")
+        button.configuration?.baseForegroundColor = Color.setColor(.darkViolet)
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -29,8 +29,8 @@ class ConfirmationView: UIView {
     private let confirmationLabel: UILabel = {
         let label = UILabel()
         label.text = "Подтверждение регистрации"
-        label.font = UIFont(name: "VenrynSans-SemiBold", size: 22)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.semibold, 22)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,8 +38,8 @@ class ConfirmationView: UIView {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.text = "Мы отправили SMS с кодом на номер"
-        label.font = UIFont(name: "VenrynSans-Light", size: 14)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.light, 14)
+        label.textColor = Color.setColor(.darkViolet)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -47,8 +47,8 @@ class ConfirmationView: UIView {
     
     private let phoneNumberLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "VenrynSans-SemiBold", size: 18)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.semibold, 18)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -56,8 +56,8 @@ class ConfirmationView: UIView {
     private let codeLabel: UILabel = {
         let label = UILabel()
         label.text = "Введите код из SMS"
-        label.font = UIFont(name: "VenrynSans-Light", size: 14)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.light, 14)
+        label.textColor = Color.setColor(.darkViolet)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -66,13 +66,13 @@ class ConfirmationView: UIView {
     private let codeField: UITextField = {
         let field = UITextField()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = UIFont(name: "VenrynSans-Light", size: 24)
+        field.font = Font.setFont(.light, 24)
         field.keyboardType = .numberPad
         field.textAlignment = .center
         field.layer.cornerRadius = 10
         field.addTarget(self, action: #selector(checkCode), for: .allEvents)
         field.layer.masksToBounds = true
-        field.layer.borderColor = UIColor(named: "DarkViolet")?.cgColor
+        field.layer.borderColor = Color.setColor(.darkViolet).cgColor
         field.layer.borderWidth = 1
         field.attributedPlaceholder = NSAttributedString(string: "_ _ _ _ _ _", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         field.textColor = UIColor(named: "DarkViolet")
@@ -85,10 +85,10 @@ class ConfirmationView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .bordered()
         var attributedString = AttributedString.init(stringLiteral: "Подтвердить")
-        attributedString.font = UIFont(name: "VenrynSans-Regular", size: 24)
+        attributedString.font = Font.setFont(.regular, 24)
         button.configuration?.attributedTitle = attributedString
         button.configuration?.buttonSize = .medium
-        button.configuration?.baseBackgroundColor = UIColor(named: "DarkViolet")
+        button.configuration?.baseBackgroundColor = Color.setColor(.darkViolet)
         button.configuration?.baseForegroundColor = .white
         return button
     }()

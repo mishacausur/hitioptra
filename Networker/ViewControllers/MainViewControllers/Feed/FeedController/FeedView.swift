@@ -29,7 +29,7 @@ class FeedView: UIView {
         button.configuration = .plain()
         button.configuration?.buttonSize = .large
         button.configuration?.image = UIImage(systemName: "magnifyingglass")
-        button.configuration?.baseForegroundColor = UIColor(named: "DarkViolet")
+        button.configuration?.baseForegroundColor = Color.setColor(.darkViolet)
         button.addTarget(self, action: #selector(signOut), for: .touchUpInside)
         return button
     }()
@@ -37,8 +37,8 @@ class FeedView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Главная"
-        label.font = UIFont(name: "VenrynSans-Regular", size: 20)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.regular, 20)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -49,7 +49,7 @@ class FeedView: UIView {
         button.configuration = .plain()
         button.configuration?.buttonSize = .large
         button.configuration?.image = UIImage(systemName: "bell")
-        button.configuration?.baseForegroundColor = UIColor(named: "DarkViolet")
+        button.configuration?.baseForegroundColor = Color.setColor(.darkViolet)
         button.addTarget(self, action: #selector(signOut), for: .touchUpInside)
         return button
     }()
@@ -66,7 +66,7 @@ class FeedView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor(named: "BackgroundViolet")
+        self.backgroundColor = Color.setColor(.background)
         configureViews()
         animationView.loopMode = .loop
         animationView.play()
@@ -79,18 +79,18 @@ class FeedView: UIView {
     func configureTableView(posts: [Post], users: [UserProfile]) {
         tableView.posts1 = posts
         tableView.users = users
-        tableView.liked = { [self] (index, likes) in
-            self.liked?(index, likes)
+        tableView.liked = { [weak self] (index, likes) in
+            self?.liked?(index, likes)
         }
-        tableView.disliked = { [self] (index, likes) in
-            self.disliked?(index, likes)
+        tableView.disliked = { [weak self] (index, likes) in
+            self?.disliked?(index, likes)
             
         }
-        tableView.tappedToProfile = { [self] post in
-            self.toUser?(post.author)
+        tableView.tappedToProfile = { [weak self] post in
+            self?.toUser?(post.author)
         }
-        tableView.refresh = {
-            self.refresh?()
+        tableView.refresh = { [weak self] in
+            self?.refresh?()
         }
         tableView.translatesAutoresizingMaskIntoConstraints = false
     }

@@ -32,7 +32,7 @@ class FeedTableViewCell: UITableViewCell {
         let view = UIView()
         view.alpha = 0
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "DarkViolet")
+        view.backgroundColor = Color.setColor(.darkViolet)
         return view
     }()
 
@@ -49,7 +49,7 @@ class FeedTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = ""
         label.font = UIFont(name: "VenrynSans-SemiBold", size: 18)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.textColor = Color.setColor(.darkViolet)
         label.isUserInteractionEnabled = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -143,8 +143,8 @@ class FeedTableViewCell: UITableViewCell {
         contentView.addSubviews(topLine, userImage, userName, userType, dateLabel, postTextLabel, postImage, footer)
         contentView.backgroundColor = .white
         
-        footer.completion = {
-            self.completion?()
+        footer.completion = { [weak self] in
+            self?.completion?()
         }
         
         let imageTappedRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedToProfile))

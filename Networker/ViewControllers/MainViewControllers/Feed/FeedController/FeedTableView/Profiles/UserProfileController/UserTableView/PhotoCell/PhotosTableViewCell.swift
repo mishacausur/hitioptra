@@ -11,15 +11,15 @@ class PhotosTableViewCell: UITableViewCell {
     
     let photosLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "VenrynSans-Regular", size: 18)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.regular, 18)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let photosCountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "VenrynSans-SemiBold", size: 18)
+        label.font = Font.setFont(.semibold, 18)
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -29,7 +29,7 @@ class PhotosTableViewCell: UITableViewCell {
         let button = UIButton()
         button.setImage(UIImage.init(systemName: "arrow.right.circle.fill"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = UIColor(named: "DarkViolet")
+        button.tintColor = Color.setColor(.darkViolet)
 //        button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
         return button
     }()
@@ -37,7 +37,7 @@ class PhotosTableViewCell: UITableViewCell {
     let bottomLine: UIView  = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "DarkViolet")
+        view.backgroundColor = Color.setColor(.darkViolet)
         return view
     }()
 

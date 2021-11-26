@@ -11,15 +11,15 @@ class UserProfileHeaderForSectionView: UITableViewHeaderFooterView {
 
     let photosLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "VenrynSans-Regular", size: 18)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.regular, 18)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let photosCountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "VenrynSans-SemiBold", size: 18)
+        label.font = Font.setFont(.semibold, 18)
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

@@ -26,9 +26,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, Coor
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.unselectedItemTintColor = UIColor.gray
-        tabBar.layer.borderColor = UIColor(named: "DarkViolet")?.cgColor
+        tabBar.layer.borderColor = Color.setColor(.darkViolet).cgColor
         tabBar.layer.borderWidth = 0.3
-        tabBar.tintColor = UIColor(named: "DarkViolet")
+        tabBar.tintColor = Color.setColor(.darkViolet)
         blurredTabBar()
         setControllers() 
     }

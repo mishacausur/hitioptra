@@ -47,7 +47,7 @@ class UserTableView: UIView {
     
     private func configureRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.tintColor = UIColor.init(named: "DarkViolet")
+        tableView.refreshControl?.tintColor = Color.setColor(.darkViolet)
         tableView.refreshControl?.attributedTitle = NSAttributedString.init("Обновить")
         tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
     }

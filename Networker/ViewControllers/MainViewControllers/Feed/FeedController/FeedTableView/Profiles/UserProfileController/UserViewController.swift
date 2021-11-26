@@ -29,14 +29,14 @@ class UserViewController: UIViewController, ViewController {
         view().backButtonTappedCompletion = {
             self.coordinator?.eventOccurred(with: .dismiss, with: nil)
         }
-        view().liked = { [self] (index, likes) in
-            viewModel.like(index: index, likes: likes)
+        view().liked = { [weak self] (index, likes) in
+            self?.viewModel.like(index: index, likes: likes)
         }
-        view().disliked = { [self] (index, likes) in
-            viewModel.unlike(index: index, likes: likes)
+        view().disliked = { [weak self] (index, likes) in
+            self?.viewModel.unlike(index: index, likes: likes)
         }
-        view().refresh = {
-            self.viewModel.getProfile()
+        view().refresh = { [weak self] in
+            self?.viewModel.getProfile()
         }
         viewModel.getProfile()
     }
