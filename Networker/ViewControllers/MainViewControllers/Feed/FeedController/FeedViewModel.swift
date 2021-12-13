@@ -13,7 +13,7 @@ protocol FeedViewInput: AnyObject {
     func animatedAlpha()
 }
 
-protocol FeedViewOutput {
+protocol FeedViewOutput: Coordinating {
     
     var users: [UserProfile]? { get }
     var posts: [Post]? { get }

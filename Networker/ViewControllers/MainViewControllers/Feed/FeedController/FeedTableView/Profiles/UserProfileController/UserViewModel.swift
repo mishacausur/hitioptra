@@ -12,7 +12,7 @@ protocol UserViewInput: AnyObject {
     func configureViewWithData(profile: ProfileData, posts: [Post])
 }
 
-protocol UserViewOutput {
+protocol UserViewOutput: Coordinating {
     func like(index: Int, likes: Int)
     func unlike(index: Int, likes: Int)
     func getProfile()
@@ -22,7 +22,7 @@ class UserViewModel: UserViewOutput {
     
     weak var viewInput: UserViewInput?
     
-    var coordinator: AppCoordinator?
+    var coordinator: Coordinator?
     
     var author: String
     

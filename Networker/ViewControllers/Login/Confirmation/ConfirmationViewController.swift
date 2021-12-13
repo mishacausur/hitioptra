@@ -7,10 +7,8 @@
 
 import UIKit
 
-class ConfirmationViewController: UIViewController, ViewController, Coordinating {
+class ConfirmationViewController: UIViewController, ViewController {
 
-    var coordinator: Coordinator?
-    
     var viewModel: ConfirmationViewOutput
     
     typealias RootView = ConfirmationView
@@ -23,7 +21,7 @@ class ConfirmationViewController: UIViewController, ViewController, Coordinating
             self?.checkCode(text: text)
         }
         view().backButtonTappedCompletion = { [weak self] in
-            self?.coordinator?.eventOccurred(with: .dismiss, with: nil)
+            self?.viewModel.coordinator?.eventOccurred(with: .dismiss, with: nil)
         }
     }
     
@@ -49,7 +47,7 @@ class ConfirmationViewController: UIViewController, ViewController, Coordinating
                 self?.invalidCode()
                 return
             }
-            self?.coordinator?.eventOccurred(with: .toSuccess, with: nil)
+            self?.viewModel.coordinator?.eventOccurred(with: .toSuccess, with: nil)
         }
     }
 

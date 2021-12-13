@@ -11,7 +11,7 @@ protocol ProfileViewInput: AnyObject {
     func configureProfile(profile: ProfileData)
 }
 
-protocol ProfileViewOutput {
+protocol ProfileViewOutput: Coordinating {
     func getProfile()
 }
 

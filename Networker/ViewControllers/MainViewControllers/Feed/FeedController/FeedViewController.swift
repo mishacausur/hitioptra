@@ -8,11 +8,9 @@
 import UIKit
 import FirebaseDatabase
 
-class FeedViewController: UIViewController, ViewController, Coordinating {
+class FeedViewController: UIViewController, ViewController {
     
     typealias RootView = FeedView
-    
-    var coordinator: Coordinator?
     
     var viewModel: FeedViewOutput
     
@@ -42,7 +40,7 @@ class FeedViewController: UIViewController, ViewController, Coordinating {
             self.viewModel.signOut()
         }
         view().toUser = { user in
-            self.coordinator?.eventOccurred(with: .toUser, with: user)
+            self.viewModel.coordinator?.eventOccurred(with: .toUser, with: user)
         }
         view().refresh = {
             self.viewModel.getContent()

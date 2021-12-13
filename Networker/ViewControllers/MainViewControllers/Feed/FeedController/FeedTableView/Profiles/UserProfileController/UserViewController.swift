@@ -10,9 +10,7 @@ import UIKit
 class UserViewController: UIViewController, ViewController {
     
     typealias RootView = UserProfileView
-    
-    var coordinator: AppCoordinator?
-    
+
     var viewModel: UserViewOutput
     
     init(viewModel: UserViewOutput) {
@@ -27,7 +25,7 @@ class UserViewController: UIViewController, ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view().backButtonTappedCompletion = {
-            self.coordinator?.eventOccurred(with: .dismiss, with: nil)
+            self.viewModel.coordinator?.eventOccurred(with: .dismiss, with: nil)
         }
         view().liked = { [weak self] (index, likes) in
             self?.viewModel.like(index: index, likes: likes)

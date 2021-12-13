@@ -10,7 +10,7 @@ import Foundation
 protocol SignInViewInput: AnyObject {
 }
 
-protocol SignInViewOutput {
+protocol SignInViewOutput: Coordinating {
     func auth(phone: String, completion: @escaping (Bool)->())
 }
 
@@ -18,7 +18,7 @@ class SignInViewModel: SignInViewOutput {
    
     weak var viewInput: SignInViewInput?
     
-    var coordinator: AppCoordinator?
+    var coordinator: Coordinator?
     
     func auth(phone: String, completion: @escaping (Bool)->()) {
         let number = "+7 \(phone)"

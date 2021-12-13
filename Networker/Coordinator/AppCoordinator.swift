@@ -47,8 +47,9 @@ class AppCoordinator: Coordinator {
     
     private func startWithAuth() {
         navigationViewController?.viewControllers.removeAll()
-        let vc = LoginViewController()
-        vc.coordinator = self
+        let vm = LoginViewModel()
+        let vc = LoginViewController(viewModel: vm)
+        vm.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
     }
     
@@ -59,8 +60,9 @@ class AppCoordinator: Coordinator {
     }
 
     private func startWithSuccess() {
-        let vc = StartViewController()
-        vc.coordinator = self
+        let vm = StartViewModel()
+        let vc = StartViewController(viewModel: vm)
+        vm.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
     }
     
@@ -69,7 +71,6 @@ class AppCoordinator: Coordinator {
         let vc = SignInViewController(viewModel: viewModel)
         viewModel.viewInput = vc
         viewModel.coordinator = self
-        vc.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
     }
     
@@ -78,7 +79,6 @@ class AppCoordinator: Coordinator {
         let vc = ConfirmationViewController(phoneNumber: phoneNumber, viewModel: viewModel)
         viewModel.viewInput = vc
         viewModel.coordinator = self
-        vc.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
     }
     
@@ -87,7 +87,6 @@ class AppCoordinator: Coordinator {
         let vc = UserViewController(viewModel: viewModel)
         viewModel.viewInput = vc
         viewModel.coordinator = self
-        vc.coordinator = self
         navigationViewController?.pushViewController(vc, animated: true)
     }
 
