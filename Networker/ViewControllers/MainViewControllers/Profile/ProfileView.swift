@@ -16,8 +16,8 @@ class ProfileView: UIView {
     let userName: UILabel = {
         let label = UILabel()
         label.text = "Mishutto"
-        label.font = UIFont(name: "VenrynSans-Regular", size: 16)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.regular, 16)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -32,7 +32,7 @@ class ProfileView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor(named: "BackgroundViolet")
+        self.backgroundColor = Color.setColor(.background)
         configureViews()
         animationView.loopMode = .loop
         animationView.play()

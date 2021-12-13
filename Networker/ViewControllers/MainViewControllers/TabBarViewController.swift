@@ -26,9 +26,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, Coor
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.unselectedItemTintColor = UIColor.gray
-        tabBar.layer.borderColor = UIColor(named: "DarkViolet")?.cgColor
+        tabBar.layer.borderColor = Color.setColor(.darkViolet).cgColor
         tabBar.layer.borderWidth = 0.3
-        tabBar.tintColor = UIColor(named: "DarkViolet")
+        tabBar.tintColor = Color.setColor(.darkViolet)
         blurredTabBar()
         setControllers() 
     }
@@ -51,19 +51,18 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, Coor
         feedViewModel.viewInput = feedVC
         feedViewModel.users = users.users
         let feedNavVC = configureViewControllers(viewController: feedVC, title: "Главная", imageName: "house.circle.fill")
-        feedVC.coordinator = coordinator
         feedViewModel.coordinator = coordinator
         
         let viewModel = ProfileViewModel()
         let profileVC = ProfileViewController(viewModel: viewModel)
         viewModel.viewInput = profileVC
         let profileNavVC = configureViewControllers(viewController: profileVC, title: "Профиль", imageName: "person.circle.fill")
-        profileVC.coordinator = coordinator
+        viewModel.coordinator = coordinator
     
-        
-        let favoriteVC = FavoriteViewController()
+        let favoriteVM = FavoriteViewModel()
+        let favoriteVC = FavoriteViewController(viewModel: favoriteVM)
         let favoriteNavVC = configureViewControllers(viewController: favoriteVC, title: "Избранное", imageName: "heart.circle.fill")
-        favoriteVC.coordinator = coordinator
+        favoriteVM.coordinator = coordinator
 
         viewControllers = [feedNavVC, profileNavVC, favoriteNavVC]
         

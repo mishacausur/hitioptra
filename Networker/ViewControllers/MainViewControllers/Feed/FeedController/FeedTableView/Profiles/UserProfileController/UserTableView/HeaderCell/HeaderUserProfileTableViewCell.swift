@@ -12,14 +12,14 @@ class HeaderUserProfileTableViewCell: UITableViewCell {
     let topLine: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "DarkViolet")
+        view.backgroundColor = Color.setColor(.darkViolet)
         return view
     }()
     
     let bottomLine: UIView  = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "DarkViolet")
+        view.backgroundColor = Color.setColor(.darkViolet)
         return view
     }()
     
@@ -33,16 +33,16 @@ class HeaderUserProfileTableViewCell: UITableViewCell {
     
     let userName: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "VenrynSans-SemiBold", size: 22)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.semibold, 22)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     let userType: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "VenrynSans-Regular", size: 14)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.regular, 14)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -51,14 +51,14 @@ class HeaderUserProfileTableViewCell: UITableViewCell {
         let button = UIButton()
         button.setImage(UIImage.init(systemName: "info.circle.fill"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = UIColor(named: "DarkViolet")
+        button.tintColor = Color.setColor(.darkViolet)
         return button
     }()
     
     let moreLabel: UILabel = {
         let label = UILabel()
         label.text = "Подробная информация"
-        label.font = UIFont(name: "VenrynSans-Regular", size: 14)
+        label.font = Font.setFont(.regular, 14)
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -69,10 +69,10 @@ class HeaderUserProfileTableViewCell: UITableViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .bordered()
         var attributedString = AttributedString.init(stringLiteral: "Написать сообщение")
-        attributedString.font = UIFont(name: "VenrynSans-Regular", size: 18)
+        attributedString.font = Font.setFont(.regular, 18)
         button.configuration?.attributedTitle = attributedString
         button.configuration?.buttonSize = .medium
-        button.configuration?.baseBackgroundColor = UIColor(named: "DarkViolet")
+        button.configuration?.baseBackgroundColor = Color.setColor(.darkViolet)
         button.configuration?.baseForegroundColor = .white
         return button
     }()
@@ -92,7 +92,7 @@ class HeaderUserProfileTableViewCell: UITableViewCell {
         userImage.image = UIImage(named: "Mishutto")
         let attributedString = AttributedString.init(stringLiteral: "Редактировать профиль")
         messageButton.configuration?.attributedTitle = attributedString
-        messageButton.configuration?.baseBackgroundColor = UIColor(named: "profileButton")
+        messageButton.configuration?.baseBackgroundColor = Color.setColor(.profileButton)
         messageButton.configuration?.baseForegroundColor = .white
     }
     

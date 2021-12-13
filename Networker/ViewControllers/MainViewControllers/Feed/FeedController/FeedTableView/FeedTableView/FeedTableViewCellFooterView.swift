@@ -15,7 +15,7 @@ class FeedTableViewCellFooterView: UIView {
     let likeIcon: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = UIColor(named: "DarkViolet")
+        button.tintColor = Color.setColor(.darkViolet)
         button.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
         return button
     }()
@@ -33,7 +33,7 @@ class FeedTableViewCellFooterView: UIView {
     let commentIcon: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = UIColor(named: "DarkViolet")
+        button.tintColor = Color.setColor(.darkViolet)
         button.setImage(UIImage.init(systemName: "bubble.right"), for: .normal)
         button.addTarget(self, action: #selector(commentTapped), for: .touchUpInside)
         return button
@@ -52,7 +52,7 @@ class FeedTableViewCellFooterView: UIView {
     let saveIcon: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = UIColor(named: "DarkViolet")
+        button.tintColor = Color.setColor(.darkViolet)
         button.setImage(UIImage.init(systemName: "bookmark"), for: .normal)
         button.addTarget(self, action: #selector(commentTapped), for: .touchUpInside)
         return button

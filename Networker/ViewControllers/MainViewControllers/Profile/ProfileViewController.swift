@@ -7,12 +7,10 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, Coordinating, ViewController {
+class ProfileViewController: UIViewController, ViewController {
     
     typealias RootView = ProfileView
 
-    var coordinator: Coordinator?
-    
     var viewModel: ProfileViewOutput
     
     init(viewModel: ProfileViewOutput) {

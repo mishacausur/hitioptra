@@ -11,7 +11,7 @@ protocol ProfileViewInput: AnyObject {
     func configureProfile(profile: ProfileData)
 }
 
-protocol ProfileViewOutput {
+protocol ProfileViewOutput: Coordinating {
     func getProfile()
 }
 
@@ -22,10 +22,10 @@ class ProfileViewModel: ProfileViewOutput {
     var coordinator: Coordinator?
     
     func getProfile() {
-        APIManager.shared.getProfile(profileID: "Mishutto") { [unowned self] profile in
+        APIManager.shared.getProfile(profileID: "Mishutto") { [weak self] profile in
             guard let profile = profile else { return }
             print(profile)
-            viewInput?.configureProfile(profile: profile)
+            self?.viewInput?.configureProfile(profile: profile)
         }
     }
     

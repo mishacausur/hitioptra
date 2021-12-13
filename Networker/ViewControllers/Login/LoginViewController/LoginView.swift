@@ -15,8 +15,8 @@ class LoginView: UIView {
     private let appLabel: UILabel = {
         let label = UILabel()
         label.text = "networker"
-        label.font = UIFont(name: "VenrynSans-SemiBold", size: 54)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.semibold, 54)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -27,10 +27,10 @@ class LoginView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .bordered()
         var attributedString = AttributedString.init(stringLiteral: "Зарегистрироваться")
-        attributedString.font = UIFont(name: "VenrynSans-Regular", size: 24)
+        attributedString.font = Font.setFont(.regular, 24)
         button.configuration?.attributedTitle = attributedString
         button.configuration?.buttonSize = .large
-        button.configuration?.baseBackgroundColor = UIColor(named: "DarkViolet")
+        button.configuration?.baseBackgroundColor = Color.setColor(.darkViolet)
         button.configuration?.baseForegroundColor = .white
         return button
     }()
@@ -41,10 +41,10 @@ class LoginView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .plain()
         var attributedString = AttributedString.init(stringLiteral: "У меня уже есть аккаунт")
-        attributedString.font = UIFont(name: "VenrynSans-Light", size: 18)
+        attributedString.font = Font.setFont(.light, 18)
         button.configuration?.attributedTitle = attributedString
         button.configuration?.buttonSize = .large
-        button.configuration?.baseForegroundColor = UIColor(named: "DarkViolet")
+        button.configuration?.baseForegroundColor = Color.setColor(.darkViolet)
         return button
     }()
     

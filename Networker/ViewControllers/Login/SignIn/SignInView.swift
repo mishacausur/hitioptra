@@ -19,7 +19,7 @@ class SignInView: UIView {
         button.configuration = .plain()
         button.configuration?.buttonSize = .large
         button.configuration?.image = UIImage(systemName: "arrow.backward")
-        button.configuration?.baseForegroundColor = UIColor(named: "DarkViolet")
+        button.configuration?.baseForegroundColor = Color.setColor(.darkViolet)
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -27,8 +27,8 @@ class SignInView: UIView {
     private let signInLabel: UILabel = {
         let label = UILabel()
         label.text = "Зарегистрироваться"
-        label.font = UIFont(name: "VenrynSans-SemiBold", size: 28)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.semibold, 28)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -36,8 +36,8 @@ class SignInView: UIView {
     private let phoneLabel: UILabel = {
         let label = UILabel()
         label.text = "Введите номер"
-        label.font = UIFont(name: "VenrynSans-Regular", size: 18)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.regular, 18)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -45,8 +45,8 @@ class SignInView: UIView {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.text = "Ваш номер будет использоваться для входа в аккаунт"
-        label.font = UIFont(name: "VenrynSans-Light", size: 14)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.light, 14)
+        label.textColor = Color.setColor(.darkViolet)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -55,7 +55,7 @@ class SignInView: UIView {
     private let phoneFieldView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
-        view.layer.borderColor = UIColor(named: "DarkViolet")?.cgColor
+        view.layer.borderColor = Color.setColor(.darkViolet).cgColor
         view.layer.borderWidth = 1
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -64,8 +64,8 @@ class SignInView: UIView {
     private let firstNumberLabel: UILabel = {
         let label = UILabel()
         label.text = "+ 7 "
-        label.font = UIFont(name: "VenrynSans-Light", size: 24)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.light, 24)
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -73,7 +73,7 @@ class SignInView: UIView {
     private let phoneField: UITextField = {
         let field = UITextField()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = UIFont(name: "VenrynSans-Regular", size: 24)
+        field.font = Font.setFont(.regular, 24)
         field.keyboardType = .numberPad
         field.textAlignment = .center
         field.addTarget(self, action: #selector(checkNumber), for: .allEvents)
@@ -89,10 +89,10 @@ class SignInView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .bordered()
         var attributedString = AttributedString.init(stringLiteral: "Далее")
-        attributedString.font = UIFont(name: "VenrynSans-Regular", size: 24)
+        attributedString.font = Font.setFont(.regular, 24)
         button.configuration?.attributedTitle = attributedString
         button.configuration?.buttonSize = .medium
-        button.configuration?.baseBackgroundColor = UIColor(named: "DarkViolet")
+        button.configuration?.baseBackgroundColor = Color.setColor(.darkViolet)
         button.configuration?.baseForegroundColor = .white
         return button
     }()
@@ -100,8 +100,8 @@ class SignInView: UIView {
     private let agreedLabel: UILabel = {
         let label = UILabel()
         label.text = "Нажимая кнопку “Далее”, Вы принимаете пользовательское Соглашение и политику конфиденциальности"
-        label.font = UIFont(name: "VenrynSans-Light", size: 14)
-        label.textColor = UIColor(named: "DarkViolet")
+        label.font = Font.setFont(.light, 14)
+        label.textColor = Color.setColor(.darkViolet)
         label.numberOfLines = 0
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -111,8 +111,8 @@ class SignInView: UIView {
     private let errorLabel: UILabel = {
         let label = UILabel()
         label.text = "Пожалуйста, введите корректный номер телефона"
-        label.font = UIFont(name: "VenrynSans-Light", size: 18)
-        label.textColor = UIColor(named: "ErrorRed")
+        label.font = Font.setFont(.light, 18)
+        label.textColor = Color.setColor(.error)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.alpha = 0
@@ -158,10 +158,10 @@ class SignInView: UIView {
     private func checkNineCharacter(text: String) {
         let nine = text[text.index(text.startIndex, offsetBy: 1)]
         if nine != "9" {
-            phoneFieldView.layer.borderColor = UIColor.red.cgColor
+            phoneFieldView.layer.borderColor = Color.setColor(.error).cgColor
             errorLabel.alpha = 1
         } else {
-            phoneFieldView.layer.borderColor = UIColor(named: "DarkViolet")?.cgColor
+            phoneFieldView.layer.borderColor = Color.setColor(.darkViolet).cgColor
             errorLabel.alpha = 0
             nextButton.isEnabled = true
             nextButton.alpha = 1

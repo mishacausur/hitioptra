@@ -13,7 +13,7 @@ protocol FeedViewInput: AnyObject {
     func animatedAlpha()
 }
 
-protocol FeedViewOutput {
+protocol FeedViewOutput: Coordinating {
     
     var users: [UserProfile]? { get }
     var posts: [Post]? { get }
@@ -34,13 +34,13 @@ class FeedViewModel: FeedViewOutput {
     var users: [UserProfile]?
     
     func getContent() {
-        APIManager.shared.getData { [self] pos in
+        APIManager.shared.getData { [weak self] pos in
             guard let post = pos else { return }
             APIManager.shared.getContent(name: post) { posts in
                 DispatchQueue.main.async {
-                    guard viewInput != nil else { return }
+                    guard self?.viewInput != nil else { return }
                     if posts.count == pos?.count {
-                        viewInput?.configureTableView(posts: posts)
+                        self?.viewInput?.configureTableView(posts: posts)
                     }
                    
                 }

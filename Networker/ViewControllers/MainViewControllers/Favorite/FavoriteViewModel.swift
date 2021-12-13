@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+protocol FavoriteViewInput: AnyObject {
+   
+}
+
+protocol FavoriteViewOutput: Coordinating {
+   
+}
+
+class FavoriteViewModel: FavoriteViewOutput {
+    var coordinator: Coordinator?
+}

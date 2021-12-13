@@ -22,7 +22,7 @@ class FollowersTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.textAlignment = .center
-        label.font = UIFont(name: "VenrynSans-Regular", size: 16)
+        label.font = Font.setFont(.regular, 16)
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -32,7 +32,7 @@ class FollowersTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.textAlignment = .center
-        label.font = UIFont(name: "VenrynSans-Regular", size: 16)
+        label.font = Font.setFont(.regular, 16)
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -42,7 +42,7 @@ class FollowersTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.textAlignment = .center
-        label.font = UIFont(name: "VenrynSans-Regular", size: 16)
+        label.font = Font.setFont(.regular, 16)
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -51,7 +51,7 @@ class FollowersTableViewCell: UITableViewCell {
     let bottomLine: UIView  = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "DarkViolet")
+        view.backgroundColor = Color.setColor(.darkViolet)
         return view
     }()
 

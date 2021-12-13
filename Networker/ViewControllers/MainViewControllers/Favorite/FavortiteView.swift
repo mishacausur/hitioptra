@@ -28,17 +28,17 @@ class FavortiteView: UIView {
     private let appLabel: UILabel = {
         let label = UILabel()
         label.text = "Здесь будут храниться твои любимые публикации"
-        label.font = UIFont(name: "VenrynSans-Regular", size: 24)
+        label.font = Font.setFont(.regular, 24)
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.textColor = UIColor(named: "DarkViolet")
+        label.textColor = Color.setColor(.darkViolet)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor(named: "BackgroundViolet")
+        self.backgroundColor = Color.setColor(.background)
         configureViews()
     }
     

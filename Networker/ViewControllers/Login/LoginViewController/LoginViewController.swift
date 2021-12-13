@@ -7,11 +7,20 @@
 
 import UIKit
 
-final class LoginViewController: UIViewController, ViewController, Coordinating {
+final class LoginViewController: UIViewController, ViewController {
     
     typealias RootView = LoginView
     
-    var coordinator: Coordinator?
+    var viewModel: LoginViewOutput
+    
+    init(viewModel: LoginViewOutput) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -22,7 +31,7 @@ final class LoginViewController: UIViewController, ViewController, Coordinating 
         view().animation()
         super.viewDidLoad()
         view().completion = {
-            self.coordinator?.eventOccurred(with: .toRegistration, with: nil)
+            self.viewModel.coordinator?.eventOccurred(with: .toRegistration, with: nil)
         }
     }
 
@@ -33,3 +42,6 @@ final class LoginViewController: UIViewController, ViewController, Coordinating 
 
 }
 
+extension LoginViewController: LoginViewInput {
+    
+}

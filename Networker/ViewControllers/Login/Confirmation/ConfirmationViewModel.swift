@@ -11,7 +11,7 @@ protocol ConfirmationViewInput: AnyObject {
     
 }
 
-protocol ConfirmationViewOutput {
+protocol ConfirmationViewOutput: Coordinating {
     
     func verify(code: String, completion: @escaping (Bool)->())
     
@@ -19,10 +19,9 @@ protocol ConfirmationViewOutput {
 
 class ConfirmationViewModel: ConfirmationViewOutput {
     
-    
     weak var viewInput: ConfirmationViewInput?
     
-    var coordinator: AppCoordinator?
+    var coordinator: Coordinator?
     
     func verify(code: String, completion: @escaping (Bool)->()) {
        

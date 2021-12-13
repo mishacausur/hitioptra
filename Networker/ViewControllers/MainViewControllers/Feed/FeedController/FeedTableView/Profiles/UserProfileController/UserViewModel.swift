@@ -12,7 +12,7 @@ protocol UserViewInput: AnyObject {
     func configureViewWithData(profile: ProfileData, posts: [Post])
 }
 
-protocol UserViewOutput {
+protocol UserViewOutput: Coordinating {
     func like(index: Int, likes: Int)
     func unlike(index: Int, likes: Int)
     func getProfile()
@@ -22,7 +22,7 @@ class UserViewModel: UserViewOutput {
     
     weak var viewInput: UserViewInput?
     
-    var coordinator: AppCoordinator?
+    var coordinator: Coordinator?
     
     var author: String
     
@@ -44,9 +44,9 @@ class UserViewModel: UserViewOutput {
         APIManager.shared.getProfile(profileID: author) { profile in
             guard let profile = profile else { return }
             
-            APIManager.shared.getContent(name: profile.posts) { posts in
+            APIManager.shared.getContent(name: profile.posts) { [weak self] posts in
                 if posts.count == profile.posts.count {
-                    self.viewInput?.configureViewWithData(profile: profile, posts: posts)
+                    self?.viewInput?.configureViewWithData(profile: profile, posts: posts)
                     
                 }
             }
