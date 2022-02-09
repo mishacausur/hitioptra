@@ -13,16 +13,15 @@ class SignInView: UIView {
     
     var confirmNumberCompletion: ((String)->())?
     
-    private let backButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.configuration = .plain()
-        button.configuration?.buttonSize = .large
-        button.configuration?.image = UIImage(systemName: "arrow.backward")
-        button.configuration?.baseForegroundColor = Color.setColor(.darkViolet)
-        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        return button
-    }()
+    private let backButton = UIButton().configure{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.configuration = .plain()
+        $0.configuration?.buttonSize = .large
+        $0.configuration?.buttonSize = .large
+        $0.configuration?.image = UIImage(systemName: "arrow.backward")
+        $0.configuration?.baseForegroundColor = Color.setColor(.darkViolet)
+        $0.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    }
     
     private let signInLabel: UILabel = {
         let label = UILabel()
