@@ -13,119 +13,98 @@ class SignInView: UIView {
     
     var confirmNumberCompletion: ((String)->())?
     
-    private let backButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.configuration = .plain()
-        button.configuration?.buttonSize = .large
-        button.configuration?.image = UIImage(systemName: "arrow.backward")
-        button.configuration?.baseForegroundColor = Color.setColor(.darkViolet)
-        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-        return button
-    }()
+    private let backButton = UIButton().configure {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.configuration = .plain()
+        $0.configuration?.buttonSize = .large
+        $0.configuration?.buttonSize = .large
+        $0.configuration?.image = UIImage(systemName: "arrow.backward")
+        $0.configuration?.baseForegroundColor = Color.setColor(.darkViolet)
+        $0.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    }
     
-    private let signInLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Зарегистрироваться"
-        label.font = Font.setFont(.semibold, 28)
-        label.textColor = Color.setColor(.darkViolet)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let signInLabel = UILabel().configure {
+        $0.text = "Зарегистрироваться"
+        $0.font = Font.setFont(.semibold, 28)
+        $0.textColor = Color.setColor(.darkViolet)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
-    private let phoneLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Введите номер"
-        label.font = Font.setFont(.regular, 18)
-        label.textColor = Color.setColor(.darkViolet)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let phoneLabel = UILabel().configure {
+        $0.text = "Введите номер"
+        $0.font = Font.setFont(.regular, 18)
+        $0.textColor = Color.setColor(.darkViolet)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
-    private let infoLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Ваш номер будет использоваться для входа в аккаунт"
-        label.font = Font.setFont(.light, 14)
-        label.textColor = Color.setColor(.darkViolet)
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let infoLabel = UILabel().configure {
+        $0.text = "Ваш номер будет использоваться для входа в аккаунт"
+        $0.font = Font.setFont(.light, 14)
+        $0.textColor = Color.setColor(.darkViolet)
+        $0.numberOfLines = 0
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
-    private let phoneFieldView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 10
-        view.layer.borderColor = Color.setColor(.darkViolet).cgColor
-        view.layer.borderWidth = 1
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let phoneFieldView = UIView().configure {
+        $0.layer.cornerRadius = 10
+        $0.layer.borderColor = Color.setColor(.darkViolet).cgColor
+        $0.layer.borderWidth = 1
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
-    private let firstNumberLabel: UILabel = {
-        let label = UILabel()
-        label.text = "+ 7 "
-        label.font = Font.setFont(.light, 24)
-        label.textColor = Color.setColor(.darkViolet)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let firstNumberLabel = UILabel().configure {
+        $0.text = "+ 7 "
+        $0.font = Font.setFont(.light, 24)
+        $0.textColor = Color.setColor(.darkViolet)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
-    private let phoneField: UITextField = {
-        let field = UITextField()
-        field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = Font.setFont(.regular, 24)
-        field.keyboardType = .numberPad
-        field.textAlignment = .center
-        field.addTarget(self, action: #selector(checkNumber), for: .allEvents)
-        field.layer.masksToBounds = true
-        field.attributedPlaceholder = NSAttributedString(string: "Номер телефона", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderColor") as Any])
-        field.textColor = UIColor(named: "DarkViolet")
-        return field
-    }()
+    private let phoneField = UITextField().configure {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.font = Font.setFont(.regular, 24)
+        $0.keyboardType = .numberPad
+        $0.textAlignment = .center
+        $0.addTarget(self, action: #selector(checkNumber), for: .allEvents)
+        $0.layer.masksToBounds = true
+        $0.attributedPlaceholder = NSAttributedString(string: "Номер телефона", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeHolderColor") as Any])
+        $0.textColor = UIColor(named: "DarkViolet")
+    }
     
-    private let nextButton: UIButton = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(confirmation), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.configuration = .bordered()
+    private let nextButton = UIButton().configure {
+        $0.addTarget(self, action: #selector(confirmation), for: .touchUpInside)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.configuration = .bordered()
         var attributedString = AttributedString.init(stringLiteral: "Далее")
         attributedString.font = Font.setFont(.regular, 24)
-        button.configuration?.attributedTitle = attributedString
-        button.configuration?.buttonSize = .medium
-        button.configuration?.baseBackgroundColor = Color.setColor(.darkViolet)
-        button.configuration?.baseForegroundColor = .white
-        return button
-    }()
+        $0.configuration?.attributedTitle = attributedString
+        $0.configuration?.buttonSize = .medium
+        $0.configuration?.baseBackgroundColor = Color.setColor(.darkViolet)
+        $0.configuration?.baseForegroundColor = .white
+    }
     
-    private let agreedLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Нажимая кнопку “Далее”, Вы принимаете пользовательское Соглашение и политику конфиденциальности"
-        label.font = Font.setFont(.light, 14)
-        label.textColor = Color.setColor(.darkViolet)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let agreedLabel = UILabel().configure {
+        $0.text = "Нажимая кнопку “Далее”, Вы принимаете пользовательское Соглашение и политику конфиденциальности"
+        $0.font = Font.setFont(.light, 14)
+        $0.textColor = Color.setColor(.darkViolet)
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
-    private let errorLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Пожалуйста, введите корректный номер телефона"
-        label.font = Font.setFont(.light, 18)
-        label.textColor = Color.setColor(.error)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        label.alpha = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let errorLabel = UILabel().configure {
+        $0.text = "Пожалуйста, введите корректный номер телефона"
+        $0.font = Font.setFont(.light, 18)
+        $0.textColor = Color.setColor(.error)
+        $0.textAlignment = .center
+        $0.numberOfLines = 0
+        $0.alpha = 0
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
-    let backgroundImage: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "bg2")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    let backgroundImage = UIImageView().configure {
+        $0.image = UIImage(named: "bg2")
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

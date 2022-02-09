@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E5A8645BE0D26714E9DD7B8 /* Pods_Networker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9BA8367F666F7D01BBAB932 /* Pods_Networker.framework */; };
+		B619455427B3F23C0048BFEB /* Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B619455327B3F23B0048BFEB /* Configure.swift */; };
 		B622E00B276757A8007FEBB6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B622E00A276757A8007FEBB6 /* LoginViewModel.swift */; };
 		B622E00D2767590D007FEBB6 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B622E00C2767590D007FEBB6 /* StartViewModel.swift */; };
 		B62E6558271B2E30008F62AE /* VenrynSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B62E6550271B297E008F62AE /* VenrynSans-Regular.ttf */; };
@@ -73,6 +74,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B619455327B3F23B0048BFEB /* Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
 		B622E00A276757A8007FEBB6 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		B622E00C2767590D007FEBB6 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		B62E6550271B297E008F62AE /* VenrynSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VenrynSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 			isa = PBXGroup;
 			children = (
 				B62E6560271B3F79008F62AE /* Extensions.swift */,
+				B619455327B3F23B0048BFEB /* Configure.swift */,
 				B645A18627514985002BAEA3 /* StyleGuide.swift */,
 				B6CDFE68271B174C001AFBB2 /* AppDelegate.swift */,
 				B6CDFE6A271B174C001AFBB2 /* SceneDelegate.swift */,
@@ -616,6 +619,7 @@
 				B6B64877273961A200DA93D1 /* Event.swift in Sources */,
 				B638003F2722C1B40082AF30 /* FeedTableViewCell.swift in Sources */,
 				B63456D5271DC56000C15085 /* TabBarViewController.swift in Sources */,
+				B619455427B3F23C0048BFEB /* Configure.swift in Sources */,
 				B638003227207A760082AF30 /* UserProfile.swift in Sources */,
 				B63456CC271DC4A500C15085 /* ProfileViewController.swift in Sources */,
 				B622E00D2767590D007FEBB6 /* StartViewModel.swift in Sources */,
