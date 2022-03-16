@@ -39,10 +39,14 @@ class FeedViewModel: FeedViewOutput {
             APIManager.shared.getContent(name: post) { posts in
                 DispatchQueue.main.async {
                     guard self?.viewInput != nil else { return }
-                    if posts.count == pos?.count {
-                        self?.viewInput?.configureTableView(posts: posts)
+                    switch posts {
+                    case .success(let posts):
+                        if posts.count == pos?.count {
+                            self?.viewInput?.configureTableView(posts: posts)
+                        }
+                    case .failure(_):
+                        print("failure")
                     }
-                   
                 }
             }
         }

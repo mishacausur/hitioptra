@@ -28,7 +28,6 @@ final class LoginViewController: UIViewController, ViewController {
     }
     
     override func viewDidLoad() {
-        view().animation()
         super.viewDidLoad()
         view().completion = {
             self.viewModel.coordinator?.eventOccurred(with: .toRegistration, with: nil)
