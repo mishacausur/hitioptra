@@ -15,25 +15,23 @@ class UserTableView: UIView {
     
     var posts1: [Post]?
     
-    var liked: ((Int, Int)->())?
+    var liked: Intness?
     
-    var disliked: ((Int, Int)->())?
+    var disliked: Intness?
     
-    var refresh: (()->())?
+    var refresh: Voidness?
     
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
-        tableView.allowsSelection = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(HeaderUserProfileTableViewCell.self, forCellReuseIdentifier: "Header")
-        tableView.register(FollowersTableViewCell.self, forCellReuseIdentifier: "Followers")
-        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "Photos")
-        tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: "Post")
-        return tableView
-    }()
+    private lazy var tableView = UITableView(frame: .zero, style: .grouped).configure {
+        $0.delegate = self
+        $0.dataSource = self
+        $0.separatorStyle = .none
+        $0.allowsSelection = false
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.register(HeaderUserProfileTableViewCell.self, forCellReuseIdentifier: "Header")
+        $0.register(FollowersTableViewCell.self, forCellReuseIdentifier: "Followers")
+        $0.register(PhotosTableViewCell.self, forCellReuseIdentifier: "Photos")
+        $0.register(FeedTableViewCell.self, forCellReuseIdentifier: "Post")
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 
+typealias Voidness = (() -> Void)
+typealias Intness = ((Int, Int) -> Void)
+
 extension UIView{
     func rotate() {
         let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")

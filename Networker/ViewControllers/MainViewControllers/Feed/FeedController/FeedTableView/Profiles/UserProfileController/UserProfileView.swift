@@ -11,15 +11,15 @@ import ViewAnimator
 
 class UserProfileView: UIView {
     
-    var backButtonTappedCompletion: (()->())?
+    var backButtonTappedCompletion: Voidness?
     
     let backView = UIView()
     
-    var liked: ((Int, Int)->())?
+    var liked: Intness?
     
-    var disliked: ((Int, Int)->())?
+    var disliked: Intness?
     
-    var refresh: (()->())?
+    var refresh: Voidness?
     
     private let scrollView = UIScrollView(frame: .zero)
     

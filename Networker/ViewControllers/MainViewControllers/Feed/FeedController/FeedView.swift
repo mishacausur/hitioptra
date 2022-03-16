@@ -11,15 +11,15 @@ import Lottie
 
 class FeedView: UIView {
     
-    var signOutTapped: (()->())?
+    var signOutTapped: Voidness?
     
-    var liked: ((Int, Int)->())?
+    var liked: Intness?
     
-    var disliked: ((Int, Int)->())?
+    var disliked: Intness?
     
     var toUser: ((String)->())?
     
-    var refresh: (()->())?
+    var refresh: Voidness?
     
     let scrollView = UIScrollView(frame: .zero)
     

@@ -12,7 +12,13 @@ import FirebaseStorage
 import FirebaseDatabase
 import FirebaseFirestore
 
+enum AppError: Error {
+    case cantGetData
+}
+
 class APIManager {
+    
+    typealias ContentCompletion = (Result<[Post], AppError>) -> Void
     
     static let shared = APIManager()
     
@@ -36,15 +42,15 @@ class APIManager {
         }
     }
     
-    func getContent(name: [String], completion: @escaping ([Post])->() ) {
+    func getContent(name: [String], completion: @escaping ContentCompletion ) {
         var posts: [Post] = []
         name.forEach { value in
             self.getPosts(postID: value, contentID: value) { post in
                 guard post != nil else {
-                    completion(posts)
+                    completion(.success(posts))
                     return }
                 posts.append(post!)
-                completion(posts)
+                completion(.success(posts))
             }
         }
     }
